@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.nav-link {
+  padding: .5em;
+}
+
+.table {
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.table-rows th, .table-rows td {
+  border: solid black 1px;
+  padding: .5em;
+}
