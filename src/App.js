@@ -28,7 +28,6 @@ function App() {
           <Route path="/releases" element={<Releases />} />
           <Route path="/genres" element={<Genres />} />
         </Routes>
-
       </div>
     </Router>
   );
