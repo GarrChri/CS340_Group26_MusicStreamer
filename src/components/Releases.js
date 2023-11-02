@@ -1,5 +1,11 @@
 import React from "react";
 
+const releaseExamples = [
+    {id: 1, artist: "Linkin Park", name: "Meteora", type: "Album"},
+    {id: 2, artist: "Red Hot Chili Peppers", name: "By The Way", type: "Album"},
+    {id: 3, artist: "Queen", name: "A Night at the Opera", type: "Album"}
+]
+
 // Creates the releases table
 function Releases({id, artistId, name, type} ) {
     return (
@@ -15,12 +21,15 @@ function Releases({id, artistId, name, type} ) {
                     </tr> 
                 </thead>
                 <tbody>
-                    <tr className="table-rows">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    {releaseExamples.map((release) => (
+
+                        <tr className="table-rows">
+                        <td>{release.id}</td>
+                        <td>{release.artist}</td>
+                        <td>{release.name}</td>
+                        <td>{release.type}</td>
                     </tr>
+                        ))}
                 </tbody>
             </table>
         </div>

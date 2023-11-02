@@ -1,5 +1,12 @@
 import React from "react";
 
+const userExamples = [
+    {id: 1, name: "Ted Miller", email: "millert8@oregonstate.edu"},
+    {id: 2, name: "Chris Garrett", email: "garrchri@oregonstate.edu"},
+    {id: 3, name: "John Smith", email: "johnsmith@fakeuser.com"}
+]
+
+
 // Creates the users table
 function Users({id, name, email}) {
     return (
@@ -14,11 +21,14 @@ function Users({id, name, email}) {
                     </tr> 
                 </thead>
                 <tbody>
-                    <tr className="table-rows">
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    {userExamples.map((user) => (
+
+                        <tr className="table-rows">
+                        <td>{user.id}</td>
+                        <td>{user.name}</td>
+                        <td>{user.email}</td>
                     </tr>
+                        ))}
                 </tbody>
             </table>
         </div>
