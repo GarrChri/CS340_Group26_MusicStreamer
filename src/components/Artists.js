@@ -30,17 +30,22 @@ function Artists({id, name, description}) {
                         ))}
                 </tbody>
             </table>
+
             <h4 >Search for an Artist</h4>
-            <Select
-                id="artist-search" 
-                className="select"
-                placeholder=""
-                options={artistExamples}
-                components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
-                openmenuonclick={false}
-                isClearable
-                isSearchable
-             />
+
+            <form action="" className="search-form"> 
+                <Select
+                    id="artist-search" 
+                    className="select"
+                    placeholder=""
+                    options={artistExamples}
+                    components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
+                    openmenuonclick={false}
+                    isClearable
+                    isSearchable
+                    />
+                <button className="search-button">Search</button>
+            </form>
         </div>
     );
 }

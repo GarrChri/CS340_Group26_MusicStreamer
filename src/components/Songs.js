@@ -39,15 +39,18 @@ function Songs({id, name, releaseId, genreId, streamCount}) {
             </table>
 
             <h4 >Search for a Song</h4>
-            <Select 
-                className="select song-select"
-                placeholder=""
-                options={songExamples}
-                components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
-                openmenuonclick={false}
-                isClearable
-                isSearchable
-             />
+
+            <form action="" className="search-form">
+                <Select 
+                    className="select song-select"
+                    placeholder=""
+                    options={songExamples}
+                    components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
+                    isClearable
+                    isSearchable
+                    />
+                    <button className="search-button">Search</button>
+                </form>
         </div>
     );
 }
