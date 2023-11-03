@@ -20,24 +20,25 @@ h5 {
   padding: .5em;
 }
 
+.table-button {
+  margin-left: .5em;
+}
+
 .playlist-table {
   margin-top: 2em;
 }
 
-.playlist-button {
-  margin-left: .5em;
-}
 
 
-.playlist-create-title {
+.form-create-title {
   margin-top: 2em;
 }
 
-.playlist-create-button {
+.form-create-button {
   margin-left: 1em;
 }
 
-.playlist-create-input {
+.form-create-input {
   margin-right: 1em
 }
 

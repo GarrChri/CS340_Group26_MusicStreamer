@@ -26,6 +26,8 @@ function Artists({id, name, description}) {
                         <td>{artist.id}</td>
                         <td>{artist.name}</td>
                         <td>{artist.description}</td>
+                        <button className="table-button">Edit</button>
+                        <button className="table-button">Delete</button>
                     </tr>
                         ))}
                 </tbody>
@@ -46,6 +48,18 @@ function Artists({id, name, description}) {
                     />
                 <button className="search-button">Search</button>
             </form>
+
+            <h4 className="form-create-title">Add a new Artist</h4>
+            <form className="form-create">
+                <label for="artist-name">Artist Name: </label>
+                <input type="text" id="artist-name" className="form-create-input" />
+                <label for="artist-description">Description: </label>
+                <input type="text" id="artist-description" className="form-create-input" />
+                <button>Create</button>
+            </form>
+
+
+
         </div>
     );
 }

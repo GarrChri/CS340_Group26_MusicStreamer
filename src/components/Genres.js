@@ -26,10 +26,19 @@ function Genres({id, name}){
                         <tr className="table-rows">
                         <td>{genre.id}</td>
                         <td>{genre.genre}</td>
+                        <button className="table-button">Edit</button>
+                        <button className="table-button">Delete</button>
                     </tr>
                         ))}
                 </tbody>
             </table>
+
+            <h4 className="form-create-title">Add a new Genre</h4>
+            <form className="form-create">
+            <label for="genre-name">Genre: </label>
+            <input type="text" id="genre-name" className="form-create-input" />
+            <button>Add</button>
+            </form>
         </div>
     );
 }

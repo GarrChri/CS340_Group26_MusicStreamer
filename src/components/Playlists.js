@@ -35,21 +35,21 @@ function Playlists({id, name, userId}) {
                             <td>{playlist.id}</td>
                             <td>{playlist.name}</td>
                             <td>{playlist.createdBy}</td>
-                            <button className="playlist-button">View</button>
-                            <button className="playlist-button">Edit</button>
-                            <button className="playlist-button">Delete</button>
+                            <button className="table-button">View</button>
+                            <button className="table-button">Edit</button>
+                            <button className="table-button">Delete</button>
                         </tr>
                                 ))
                             }
                 </tbody>
             </table>
 
-            <h4 className="playlist-create-title">Create a new Playlist</h4>
-            <form className="playlist-create">
+            <h4 className="form-create-title">Create a new Playlist</h4>
+            <form className="form-create">
             <label for="playlist-name">Playlist name: </label>
-            <input type="text" id="playlist-name" className="playlist-create-input" />
+            <input type="text" id="playlist-name" className="form-create-input" />
             <label for="playlist-creator">Created by: </label>
-            <input type="text" id="playlist-creator" className="playlist-create-input" />
+            <input type="text" id="playlist-creator" className="form-create-input" />
             <button>Create</button>
             </form>
 

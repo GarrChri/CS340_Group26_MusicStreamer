@@ -32,6 +32,8 @@ function Songs({id, name, releaseId, genreId, streamCount}) {
                             <td>{song.release}</td>
                             <td>{song.genre}</td>
                             <td>{song.streamCount}</td>
+                            <button className="table-button">Edit</button>
+                            <button className="table-button">Delete</button>
                     </tr>
                         ))
                         }
@@ -51,6 +53,17 @@ function Songs({id, name, releaseId, genreId, streamCount}) {
                     />
                     <button className="search-button">Search</button>
                 </form>
+
+            <h4 className="form-create-title">Add a new Song</h4>
+            <form className="form-create">
+                <label for="song-name">Song: </label>
+                <input type="text" id="song-name" className="form-create-input" />
+                <label for="release-name">Release: </label>
+                <input type="text" id="release-name" className="form-create-input" />
+                <label for="genre">Genre: </label>
+                <input type="text" id="genre" className="form-create-input" />
+                <button>Add</button>
+            </form>
         </div>
     );
 }

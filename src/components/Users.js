@@ -22,15 +22,26 @@ function Users({id, name, email}) {
                 </thead>
                 <tbody>
                     {userExamples.map((user) => (
-
                         <tr className="table-rows">
                         <td>{user.id}</td>
                         <td>{user.name}</td>
                         <td>{user.email}</td>
+                        <button className="table-button">Edit</button>
+                        <button className="table-button">Delete</button>
                     </tr>
                         ))}
                 </tbody>
             </table>
+
+            <h4 className="form-create-title">Add a new User</h4>
+            <form className="form-create">
+                <label for="user-name">Name: </label>
+                <input type="text" id="user-name" className="form-create-input" />
+                <label for="user-email">Email: </label>
+                <input type="text" id="user-email" className="form-create-input" />
+                <button>Add</button>
+            </form>
+
         </div>
     );
 }
