@@ -55,7 +55,7 @@ function Artists({id, name, description}) {
                 <input type="text" id="artist-name" className="form-create-input" />
                 <label for="artist-description">Description: </label>
                 <input type="text" id="artist-description" className="form-create-input" />
-                <button>Create</button>
+                <button>Add</button>
             </form>
 
 

@@ -50,7 +50,7 @@ function Playlists({id, name, userId}) {
             <input type="text" id="playlist-name" className="form-create-input" />
             <label for="playlist-creator">Created by: </label>
             <input type="text" id="playlist-creator" className="form-create-input" />
-            <button>Create</button>
+            <button>Add</button>
             </form>
 
             <h5>*Sample view of playlist 1</h5>
