@@ -24,6 +24,9 @@ const NavBar = () => {
                 <Link className="nav-link" to="/releases">
                     Releases
                 </Link>
+                <Link className="nav-link" to="/releasetypes">
+                    Release Types
+                </Link>
                 <Link className="nav-link" to="/genres">
                     Genres
                 </Link>
