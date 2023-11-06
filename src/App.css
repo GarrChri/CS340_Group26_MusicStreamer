@@ -1,3 +1,7 @@
+h5 {
+  margin-top: 5em;
+}
+
 .App {
   text-align: center;
 }
@@ -14,4 +18,38 @@
 .table-rows th, .table-rows td {
   border: solid black 1px;
   padding: .5em;
+}
+
+.table-button {
+  margin-left: .5em;
+}
+
+.playlist-table {
+  margin-top: 2em;
+}
+
+
+
+.form-create-title {
+  margin-top: 2em;
+}
+
+.form-create-button {
+  margin-left: 1em;
+}
+
+.form-create-input {
+  margin-right: 1em
+}
+
+.select {
+  width: 25em;
+  margin: auto;
+}
+
+.search-form {
+  display: flex;
+  margin: auto;
+  max-width: 30em;
+  align-items: center;
 }

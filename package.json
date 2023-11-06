@@ -11,9 +11,11 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.17.0",
     "react-scripts": "^5.0.1",
+    "react-select": "^5.7.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "start": "PORT=2828 react-scripts start",
     "start": "PORT=2626 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

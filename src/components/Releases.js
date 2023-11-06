@@ -1,5 +1,11 @@
 import React from "react";
 
+const releaseExamples = [
+    {id: 1, artist: "Linkin Park", name: "Meteora", type: "Album"},
+    {id: 2, artist: "Red Hot Chili Peppers", name: "By The Way", type: "Album"},
+    {id: 3, artist: "Queen", name: "A Night at the Opera", type: "Album"}
+]
+
 // Creates the releases table
 function Releases({id, artistId, name, type} ) {
     return (
@@ -15,14 +21,30 @@ function Releases({id, artistId, name, type} ) {
                     </tr> 
                 </thead>
                 <tbody>
-                    <tr className="table-rows">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    {releaseExamples.map((release) => (
+                        <tr className="table-rows">
+                            <td>{release.id}</td>
+                            <td>{release.artist}</td>
+                            <td>{release.name}</td>
+                            <td>{release.type}</td>
+                            <button className="table-button">Edit</button>
+                            <button className="table-button">Delete</button>
+                        </tr>
+                        ))}
                 </tbody>
             </table>
+
+            <h4 className="form-create-title">Add a new Release</h4>
+            <form className="form-create">
+                <label for="artist-name">Artist: </label>
+                <input type="text" id="artist-name" className="form-create-input" />
+                <label for="release-name">Release Name: </label>
+                <input type="text" id="release-name" className="form-create-input" />
+                <label for="release-type">Release Type: </label>
+                <input type="text" id="release-type" className="form-create-input" />
+                <button>Add</button>
+            </form>
+
         </div>
     );
 }
