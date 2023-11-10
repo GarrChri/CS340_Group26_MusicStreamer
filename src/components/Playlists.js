@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import NavBar from './NavBar';
 
 const playlistExamples = [
     {id: 1, name: "playlist 1", createdBy: "Ted Miller"},
@@ -20,6 +21,7 @@ const playlistExampleData = [
 function Playlists({id, name, userId}) {
     return (
         <div>
+            <NavBar></NavBar>
             <h2>Playlists</h2>
             <table className="table playlist-table">
                 <thead>

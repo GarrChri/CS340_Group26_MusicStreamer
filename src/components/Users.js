@@ -1,4 +1,5 @@
 import React from "react";
+import NavBar from './NavBar';
 
 const userExamples = [
     {id: 1, name: "Ted Miller", email: "millert8@oregonstate.edu"},
@@ -11,6 +12,7 @@ const userExamples = [
 function Users({id, name, email}) {
     return (
         <div>
+            <NavBar></NavBar>
             <h2>Users</h2>
             <table className="table">
                 <thead>

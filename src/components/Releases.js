@@ -1,4 +1,5 @@
 import React from "react";
+import NavBar from './NavBar';
 
 const releaseExamples = [
     {id: 1, artist: "Linkin Park", name: "Meteora", type: "Album"},
@@ -10,6 +11,7 @@ const releaseExamples = [
 function Releases({id, artistId, name, type} ) {
     return (
         <div>
+            <NavBar></NavBar>
             <h2>Releases</h2>
             <table className="table">
                 <thead>

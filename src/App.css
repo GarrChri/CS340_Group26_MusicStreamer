@@ -6,6 +6,32 @@ h5 {
   text-align: center;
 }
 
+.home-title {
+  margin-bottom: 5em;
+}
+
+.home-nav-container {
+  margin: auto;
+  width: 40em;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 2 2 2 2;
+  row-gap: 2em;
+  
+}
+
+.home-nav-link {
+  text-decoration: none;
+}
+
+.home-description-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: start;
+  margin-left: 2em;
+}
+
 .nav-link {
   padding: .5em;
 }
@@ -27,8 +53,6 @@ h5 {
 .playlist-table {
   margin-top: 2em;
 }
-
-
 
 .form-create-title {
   margin-top: 2em;

@@ -1,4 +1,5 @@
 import React from "react";
+import NavBar from './NavBar';
 
 const releaseTypeExamples = [
     {id: 1, name: "Single"},
@@ -12,6 +13,7 @@ const releaseTypeExamples = [
 function ReleaseTypes({id, name}) {
     return (
         <div> 
+            <NavBar></NavBar>
             <h2>Release Types</h2>
             <table className="table">
                 <thead>

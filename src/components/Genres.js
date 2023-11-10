@@ -1,4 +1,5 @@
 import React from "react";
+import NavBar from './NavBar';
 
 const genreExamples = [
     {id: 1, genre: "Rock"},
@@ -12,6 +13,7 @@ const genreExamples = [
 function Genres({id, name}){
     return (
         <div>
+            <NavBar></NavBar>
             <h2>Genres</h2>
             <table className="table">
                 <thead>

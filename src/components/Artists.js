@@ -1,5 +1,6 @@
 import React from "react";
 import Select from "react-select";
+import NavBar from './NavBar';
 
 const artistExamples = [
     {value: "Linkin Park", label: "Linkin Park", id: 1, name: "Linkin Park", description: "Info about Linkin Park"},
@@ -11,6 +12,7 @@ const artistExamples = [
 function Artists({id, name, description}) {
     return (
         <div>
+            <NavBar></NavBar>
             <h2>Artists</h2>
             <table className="table">
                 <thead>
