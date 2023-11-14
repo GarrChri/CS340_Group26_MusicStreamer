@@ -8,6 +8,10 @@ const genreExamples = [
     {id: 5, genre: "Country"}
 ]
 
+// Function to retrieve genres
+
+// Function to create a new genre
+
 // Creates the genres table
 function Genres({id, name}){
     return (
