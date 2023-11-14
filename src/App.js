@@ -9,6 +9,7 @@ import ReleaseTypes from './components/ReleaseTypes';
 import Songs from './components/Songs';
 import SongArtists from './components/SongArtists';
 import Genres from './components/Genres';
+import EditGenre from './components/EditGenre';
 import Users from './components/Users';
 import Playlists from './components/Playlists';
 import PlaylistSongs from './components/PlaylistSongs';
@@ -28,6 +29,7 @@ function App() {
           <Route path="/releases" element={<Releases />} />
           <Route path="/releasetypes" element={<ReleaseTypes />} />
           <Route path="/genres" element={<Genres />} />
+          <Route path="/editGenre" element={<EditGenre />} />
         </Routes>
       </div>
     </Router>

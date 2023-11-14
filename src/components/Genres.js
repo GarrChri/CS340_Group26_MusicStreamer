@@ -1,12 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 // Define API URL
 const API_ENDPOINT = process.env.REACT_APP_PROXY;
 
 function Genres({id, name}){
     // Setting variables and state
+    const navigate = useNavigate();
     const [genres, setGenres] = useState([]);
     const [genreName, setGenreName] = useState("");
 
@@ -49,8 +50,9 @@ function Genres({id, name}){
         }
     }
 
-    const editGenre = (genre) => {      
-        // TO DO
+    const editGenre = (genre) => {     
+        // navigate to edit page, sending state props to the edit page/component 
+        navigate("/editGenre", { state: { genreToEdit: genre }});
     }
 
     useEffect(() => {
