@@ -6,8 +6,64 @@ h5 {
   text-align: center;
 }
 
+.home-title {
+  margin-bottom: 5em;
+}
+
+.home-nav-container {
+  margin: auto;
+  max-width: 20%;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 2 2 2 1;
+  row-gap: 2em;
+}
+
+.home-nav-link {
+  margin: auto;
+  width: 5em;
+  padding: 0.5em;
+  text-decoration: none;
+  color: #e9dcdc;
+  font-weight: bold;
+  background-color: #2b2727;
+  border-radius: 5%;
+}
+
+.home-nav-link:hover {
+  color: #2b2727;
+  background-color: #e9dcdc;
+}
+
+.home-nav-link:last-child:nth-child(2n-1) {
+  grid-column: span 2;
+  width: 7.5em;
+}
+
+.home-description-container {
+  margin: auto;
+  margin-top: 5em;
+  width: 34%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: start;
+}
+
+.nav-bar {
+  padding: 1em 0.5em 0 0;
+  background-color: #08080ca6;
+  height: 2.5em;
+}
+
 .nav-link {
-  padding: .5em;
+  width: 5em;
+  padding: 0.2em;
+  margin-left: 1em;
+  text-decoration: none;
+  color: #e9e8f3;
+  font-weight: bold;
+  border-radius: 5%;
 }
 
 .table {
@@ -15,20 +71,19 @@ h5 {
   border-collapse: collapse;
 }
 
-.table-rows th, .table-rows td {
+.table-rows th,
+.table-rows td {
   border: solid black 1px;
-  padding: .5em;
+  padding: 0.5em;
 }
 
 .table-button {
-  margin-left: .5em;
+  margin-left: 0.5em;
 }
 
 .playlist-table {
   margin-top: 2em;
 }
-
-
 
 .form-create-title {
   margin-top: 2em;
@@ -39,7 +94,11 @@ h5 {
 }
 
 .form-create-input {
-  margin-right: 1em
+  margin-right: 1em;
+}
+
+.form-update-artist {
+  margin-top: 2em;
 }
 
 .select {
@@ -52,4 +111,12 @@ h5 {
   margin: auto;
   max-width: 30em;
   align-items: center;
+}
+
+.table-rows .table-button {
+  border: none;
+}
+
+.load-message {
+  column-span: all;
 }

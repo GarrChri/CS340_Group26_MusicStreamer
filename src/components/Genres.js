@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import NavBar from "./NavBar";
 
 // Define API URL
 const API_ENDPOINT = process.env.REACT_APP_PROXY;
@@ -61,6 +62,7 @@ function Genres({id, name}){
 
     return (
         <div>
+            <NavBar></NavBar>
             <h2>Genres</h2>
             <table className="table">
                 <thead>
