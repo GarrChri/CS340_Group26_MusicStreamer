@@ -13,7 +13,6 @@ const getArtists = async () => {
     return response.data;
 };
 
-
 const DisplayArtists = () => {
 
   // State varible used to show/hide artist update input fields
