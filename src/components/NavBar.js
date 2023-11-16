@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 
-
 // Creates links to each of the pages
 const NavBar = () => {
     return (
