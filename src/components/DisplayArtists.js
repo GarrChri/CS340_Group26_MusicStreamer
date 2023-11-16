@@ -4,13 +4,12 @@ import axios from "axios";
 import DeleteArtist from "./DeleteArtist";
 import UpdateArtist from "./UpdateArtist";
 
-const api_url = "http://localhost:2626/api/artists";
-
-
+// Define API URL
+const API_ENDPOINT = process.env.REACT_APP_PROXY;
 
 // Making the api call to retrieve all artists
 const getArtists = async () => {
-    const response = await axios.get(api_url);
+    const response = await axios.get(`${API_ENDPOINT}/api/artists`);
     return response.data;
 };
 
@@ -41,9 +40,9 @@ const DisplayArtists = () => {
     <tbody>
       {artists.map((artist) => (
         <tr className="table-rows" key={artist.id}>
-          <td>{artist.id}</td>
-          <td>{artist.name}</td>
-          <td>{artist.description}</td>
+          <td>{artist.artist_id}</td>
+          <td>{artist.artist_name}</td>
+          <td>{artist.artist_description}</td>
           <td className="table-button">
             <button onClick={setUpdateTrue}>Edit</button>
           </td>

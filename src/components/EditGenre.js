@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import NavBar from "./NavBar";
 
 // Define API URL
 const API_ENDPOINT = process.env.REACT_APP_PROXY;
@@ -37,6 +38,7 @@ function EditGenre () {
 
     return (
         <div>
+            <NavBar></NavBar>
             <h2>Edit</h2>
             
             <h4 className="form-create-title">Editing {genreToEdit.genre_name}</h4>

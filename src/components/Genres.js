@@ -78,11 +78,9 @@ function Genres({id, name}){
                             <td>{genre.genre_id}</td>
                             <td>{genre.genre_name}</td>
                             <button 
-                                className="table-button"
                                 onClick={() => editGenre(genre)}
                                 >Edit</button>
                             <button
-                                className="table-button"
                                 onClick={() => deleteGenre(genre.genre_id)}
                                 >Delete</button>
                         </tr>
