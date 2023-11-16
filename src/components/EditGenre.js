@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 // Define API URL
@@ -14,8 +14,6 @@ function EditGenre () {
 
     const [genreName, setGenreName] = useState(genreToEdit.genre_name);
     const genreID = genreToEdit.genre_id;
-
-    console.log(genreName);
 
     const updateGenre = async () => {
         // create new genre object from state vars
