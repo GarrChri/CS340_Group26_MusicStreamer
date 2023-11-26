@@ -2,13 +2,15 @@ import React from "react";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
-const api_url = "/api/artists";
 
 const DeleteArtist = () => {
+
+  // Sending delete request to the api
   const mutation = useMutation((id) => {
     return axios.delete(`/api/artists/${id}`);
   });
 
+  // Deleting artist
   const handleDelete = () => {
     mutation.mutate();
   };
