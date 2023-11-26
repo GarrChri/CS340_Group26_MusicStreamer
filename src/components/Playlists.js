@@ -1,34 +1,78 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 
-const playlistExamples = [
-  { id: 1, name: "playlist 1", createdBy: "Ted Miller" },
-  { id: 2, name: "playlist 2", createdBy: "Chris Garrett" },
-  { id: 3, name: "playlist 3", createdBy: "John Smith" }
-];
 
-// Sample playlist that will be returned when user clicks 'View'
-const playlistExampleData = [
-  {
-    song: "Breaking The Habit",
-    artist: "Linkin Park",
-    playlistName: "Playlist 1"
-  },
-  { song: "Bohemian Rhapsody", artist: "Queen", playlistName: "Playlist 1" },
-  {
-    song: "By The Way",
-    artist: "Red Hot Chili Peppers",
-    playlistName: "Playlist 1"
-  },
-  {
-    song: "Can't Stop",
-    artist: "Red Hot Chili Peppers",
-    playlistName: "Playlist 1"
-  }
-];
+// Define API URL
+const API_ENDPOINT = process.env.REACT_APP_PROXY;
+
+
 
 // Creates the playlists table
-function Playlists({ id, name, userId }) {
+function Playlists() {
+
+  
+   // Setting variables and state
+   const navigate = useNavigate();
+   const [playlists, setPlaylists] = useState([]);
+   const [playlistID, setPlaylistID] = useState("");
+   const [playlistName, setPlaylistName] = useState("");
+   const [userID, setUserID] = useState("");
+   const [isPrivate, setIsPrivate] = useState("");
+
+   // Function to retrieve genres
+   const loadPlaylists = async () => {
+       const response = await fetch(`${API_ENDPOINT}/api/playlists`);
+       const data = await response.json();
+       
+       setPlaylists(data);
+   }
+
+   // function to create a new genre
+   const createPlaylist = async () => {
+       setIsPrivate(Number(isPrivate))
+       const newPlaylist = {playlistName, userID, isPrivate}
+       
+       console.log(newPlaylist)
+
+       const response = await fetch(`${API_ENDPOINT}/api/playlists`, {
+           method: "POST",
+           body: JSON.stringify(newPlaylist),
+           headers: {
+               "content-type": "application/json"
+           }
+       });
+
+       if (response.status === 200) {
+           alert(`Added new playlist type ${playlistName}`);
+           loadPlaylists();
+       } else {
+           alert("New playlist not added. Check required fields");
+       }
+   }
+
+   const deletePlaylist = async (playlist_id) => {
+    console.log(playlist_id)
+       const response = await fetch(`${API_ENDPOINT}/api/playlists/${playlist_id}`, {
+           method: "DELETE"});
+
+       if (response.status === 200){
+           alert(`Deleted playlist `);
+           loadPlaylists();
+       } else {
+           alert("Playlist not deleted");
+       }
+   }
+
+   const editPlaylist = (playlist) => {     
+       // navigate to edit page, sending state props to the edit page/component 
+       navigate("/editPlaylist", { state: { playlistToEdit: playlist }});
+   }
+
+   useEffect(() => {
+       loadPlaylists();
+   }, []);
   return (
     <div>
       <NavBar></NavBar>
@@ -38,23 +82,27 @@ function Playlists({ id, name, userId }) {
           <tr className="table-rows">
             <th>ID</th>
             <th>Playlist Name</th>
-            <th>Created By</th>
+            <th>User ID</th>
           </tr>
         </thead>
         <tbody>
-          {playlistExamples.map((playlist) => (
+          {playlists.map((playlist) => (
             <tr className="table-rows">
-              <td>{playlist.id}</td>
-              <td>{playlist.name}</td>
-              <td>{playlist.createdBy}</td>
+              <td>{playlist.playlist_id}</td>
+              <td>{playlist.playlist_name}</td>
+              <td>{playlist.user_id}</td>
               <td className="table-button">
                 <button>View</button>
               </td>
               <td className="table-button">
-                <button>Edit</button>
+                <button 
+                    onClick={() => editPlaylist(playlist)}
+                >Edit</button>
               </td>
               <td className="table-button">
-                <button>Delete</button>
+                <button
+                    onClick={() => deletePlaylist(playlist.playlist_id)}
+                >Delete</button>
               </td>
             </tr>
           ))}
@@ -63,18 +111,47 @@ function Playlists({ id, name, userId }) {
 
       <h4 className="form-create-title">Create a new Playlist</h4>
       <form className="form-create">
-        <label for="playlist-name">Playlist name: </label>
-        <input type="text" id="playlist-name" className="form-create-input" />
-        <label for="playlist-creator">Created by: </label>
-        <input
-          type="text"
-          id="playlist-creator"
+        <label htmlFor="playlist-name">Playlist name: </label>
+        <input 
+          name="playlistName"
+          type="text" 
+          id="playlist-name" 
           className="form-create-input"
+          onChange={e => setPlaylistName(e.target.value)} 
         />
-        <button>Add</button>
+        <label htmlFor="user-id">User ID: </label>
+        <input
+          name="userID"
+          type="text"
+          id="user-id"
+          className="form-create-input"
+          onChange={e => setUserID(e.target.value)}
+        />
+        <label htmlFor="is-private" className="form-label">Private Playlist?</label>
+        <select 
+          name="isPrivate" 
+          id="is-private" 
+          type="number"
+          className="form-create-input"
+          onChange={e => setIsPrivate(e.target.value)}
+          >
+          <option value="default">---</option>
+          <option value={1} >Yes</option>
+          <option value={0}>No</option>
+        </select>
+        <button type="button" onClick = {() => createPlaylist()}>Add</button>
       </form>
 
-      <h5>*Sample view of playlist 1</h5>
+
+    </div>
+  );
+}
+
+export default Playlists;
+
+
+/**
+ *       <h5>*Sample view of playlist 1</h5>
       <table className="table">
         <tr className="table-rows">
           <th>Song</th>
@@ -87,8 +164,4 @@ function Playlists({ id, name, userId }) {
           </tr>
         ))}
       </table>
-    </div>
-  );
-}
-
-export default Playlists;
+ */

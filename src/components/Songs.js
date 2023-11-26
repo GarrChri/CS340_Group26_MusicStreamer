@@ -1,57 +1,83 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import Select from "react-select";
 import NavBar from "./NavBar";
 
-const songExamples = [
-  {
-    value: "Breaking The Habit",
-    label: "Breaking The Habit",
-    id: 1,
-    name: "Breaking The Habit",
-    release_id: 1,
-    genre: "Alternative Rock",
-    streamCount: 299102
-  },
-  {
-    value: "Can't Stop",
-    label: "Can't Stop",
-    id: 2,
-    name: "Can't Stop",
-    release_id: 2,
-    genre: "Alternative Rock",
-    streamCount: 127402
-  },
-  {
-    value: "Bohemian Rhapsody",
-    label: "Bohemian Rhapsody",
-    id: 3,
-    name: "Bohemian Rhapsody",
-    release_id: 3,
-    genre: "Rock",
-    streamCount: 121254
-  },
-  {
-    value: "Somewhere I Belong",
-    label: "Somewhere I Belong",
-    id: 4,
-    name: "Somewhere I Belong",
-    release_id: 1,
-    genre: "Alternative Rock",
-    streamCount: 142632
-  },
-  {
-    value: "By The Way",
-    label: "By The Way",
-    id: 5,
-    name: "By The Way",
-    release_id: 2,
-    genre: "Alternative Rock",
-    streamCount: 99102
-  }
-];
+
+// Define API URL
+const API_ENDPOINT = process.env.REACT_APP_PROXY;
+
 
 // Creates the songs table
-function Songs({ id, name, releaseId, genreId, streamCount }) {
+function Songs() {
+
+  // Setting variables and state
+  const navigate = useNavigate();
+  const [songs, setSongs] = useState([]);
+  const [songName, setSongName] = useState("");
+  const [singleSongName, setSingleSongName] = useState("");
+  const [releaseID, setReleaseID] = useState("");
+  const [genreID, setGenreID] = useState("");
+
+  // Function to retrieve songs
+  const loadSongs = async () => {
+
+      const response = await fetch(`${API_ENDPOINT}/api/songs`);
+      const data = await response.json();
+      console.log(data)
+      setSongs(data);
+  }
+
+  // Function to retrieve a single song
+  const loadSingleSong = async (song_id) => {
+
+    const response = await fetch(`${API_ENDPOINT}/api/songs/${song_id}`);
+    const data = await response.json();
+    setSongs(data);
+}
+
+  // function to create a new song
+  const createSong = async () => {
+      const newSong = {songName, releaseID, genreID}
+
+      const response = await fetch(`${API_ENDPOINT}/api/songs`, {
+          method: "POST",
+          body: JSON.stringify(newSong),
+          headers: {
+              "content-type": "application/json"
+          }
+      });
+
+      if (response.status === 200) {
+          alert(`Added new song ${songName}`);
+          loadSongs();
+      } else {
+          alert("New song not added. Check required fields");
+      }
+  }
+
+  const deleteSong = async (song_id) => {
+      const response = await fetch(`${API_ENDPOINT}/api/songs/${song_id}`, {
+          method: "DELETE"});
+
+      if (response.status === 200){
+          alert(`Deleted song `);
+          loadSongs();
+      } else {
+          alert("Song not deleted");
+      }
+  }
+
+  const editSong = (song) => {     
+      // navigate to edit page, sending state props to the edit page/component 
+      navigate("/editSong", { state: { songToEdit: song }});
+  }
+
+  useEffect(() => {
+      loadSongs();
+  }, []);
+
   return (
     <div>
       <NavBar></NavBar>
@@ -62,23 +88,27 @@ function Songs({ id, name, releaseId, genreId, streamCount }) {
             <th>ID</th>
             <th>Song</th>
             <th>Release ID</th>
-            <th>Genre</th>
+            <th>Genre ID</th>
             <th>Stream Count</th>
           </tr>
         </thead>
         <tbody>
-          {songExamples.map((song) => (
+          {songs.map((song) => (
             <tr className="table-rows">
-              <td>{song.id}</td>
-              <td>{song.name}</td>
+              <td>{song.song_id}</td>
+              <td>{song.song_name}</td>
               <td>{song.release_id}</td>
-              <td>{song.genre}</td>
-              <td>{song.streamCount}</td>
+              <td>{song.genre_id}</td>
+              <td>{song.stream_count}</td>
               <td className="table-button">
-                <button>Edit</button>
+                  <button 
+                      onClick={() => editSong(song)}
+                      >Edit</button>
               </td>
               <td className="table-button">
-                <button>Delete</button>
+                  <button
+                      onClick={() => deleteSong(song.song_id)}
+                      >Delete</button>
               </td>
             </tr>
           ))}
@@ -91,7 +121,7 @@ function Songs({ id, name, releaseId, genreId, streamCount }) {
         <Select
           className="select song-select"
           placeholder=""
-          options={songExamples}
+          options={songs}
           components={{
             DropdownIndicator: () => null,
             IndicatorSeparator: () => null
@@ -103,14 +133,32 @@ function Songs({ id, name, releaseId, genreId, streamCount }) {
       </form>
 
       <h4 className="form-create-title">Add a new Song</h4>
-      <form className="form-create">
-        <label for="song-name">Song: </label>
-        <input type="text" id="song-name" className="form-create-input" />
-        <label for="release-name">Release ID: </label>
-        <input type="text" id="release-name" className="form-create-input" />
-        <label for="genre">Genre: </label>
-        <input type="text" id="genre" className="form-create-input" />
-        <button>Add</button>
+      <form className="form-create" action="">
+        <label for="songName">Song: </label>
+        <input 
+          name="songName"
+          type="text" 
+          id="song-name" 
+          className="form-create-input" 
+          onChange={e => setSongName(e.target.value)}
+        />
+        <label for="releaseID">Release ID: </label>
+        <input 
+          name="releaseID"
+          type="text" 
+          id="release-id" 
+          className="form-create-input" 
+          onChange={e => setReleaseID(e.target.value)}
+        />
+        <label for="genreID">Genre ID: </label>
+        <input 
+          name="genreID"
+          type="text" 
+          id="genreID" 
+          className="form-create-input" 
+          onChange={e => setGenreID(e.target.value)}
+        />
+        <button type="button" onClick = {() => createSong()}>Add</button>
       </form>
     </div>
   );

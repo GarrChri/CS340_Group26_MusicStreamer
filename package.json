@@ -8,8 +8,9 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "dotenv": "^16.3.1",
     "axios": "^1.6.1",
+    "dotenv": "^16.3.1",
+    "forever": "^4.0.3",
     "git": "^0.1.5",
     "http-proxy-middleware": "^2.0.6",
     "react": "^18.2.0",
@@ -20,10 +21,10 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object":"7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=2828 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
