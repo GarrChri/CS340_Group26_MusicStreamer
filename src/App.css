@@ -101,6 +101,10 @@ h5 {
   margin-top: 2em;
 }
 
+.form-label {
+  margin-right: .5em;
+}
+
 .select {
   width: 25em;
   margin: auto;

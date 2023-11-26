@@ -40,6 +40,7 @@ function Genres({id, name}){
     }
 
     const deleteGenre = async (genre_id) => {
+        console.log(genre_id)
         const response = await fetch(`${API_ENDPOINT}/api/genres/${genre_id}`, {
             method: "DELETE"});
 

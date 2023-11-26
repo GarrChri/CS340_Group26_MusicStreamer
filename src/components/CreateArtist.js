@@ -32,7 +32,7 @@ const CreateArtist = (updateHelper) => {
     return <span>Post submitted!</span>;
   }
 
-  // Creating a form with 2 input fields + buttons for submitting new artist data
+  // Creating a form with 2 input fields + button for submitting new artist data
   return (
     <div>
       <form className="form-create">
