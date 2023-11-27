@@ -20,7 +20,7 @@ function EditRelease () {
     const [releaseTypeID, setReleaseTypeID] = useState(releaseToEdit.release_type_id);
     
     const updateRelease = async () => {
-        // create new release type object from state vars
+        // create new release object from state vars
         const updatedRelease = {releaseID, releaseName, artistID, releaseTypeID};
         
         console.log(updatedRelease)

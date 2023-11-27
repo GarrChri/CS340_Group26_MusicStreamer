@@ -8,7 +8,7 @@ import NavBar from "./NavBar";
 const API_ENDPOINT = process.env.REACT_APP_PROXY;
 
 
-// Creates the releases table
+// Creates the users table
 function Users() {
 
    // Setting variables and state
@@ -18,14 +18,14 @@ function Users() {
    const [userName, setUserName] = useState("");
    const [userEmail, setUserEmail] = useState("");
 
-   // Function to retrieve genres
+   // Function to retrieve users
    const loadUsers = async () => {
        const response = await fetch(`${API_ENDPOINT}/api/users`);
        const data = await response.json();
        setUsers(data);
    }
 
-   // function to create a new genre
+   // function to create a new user
    const createUser = async () => {
        const newUser = {userID, userName, userEmail}
        console.log(newUser)
@@ -42,7 +42,7 @@ function Users() {
            alert(`Added new user ${userName}`);
            loadUsers();
        } else {
-           alert("New item not added. Check required fields");
+           alert("New user not added. Check required fields");
        }
    }
 

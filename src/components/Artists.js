@@ -101,24 +101,28 @@ function Artists() {
         </tbody>
       </table>
 
-      <h4>Search for an Artist</h4>
-      <form action="" className="search-form">
-      <Select
-        id="artist-search"
-        className="select"
-        placeholder=""
-        components={{
-          DropdownIndicator: () => null,
-          IndicatorSeparator: () => null
+      {/**
+       * 
+       <h4>Search for an Artist</h4>
+       <form action="" className="search-form">
+       <Select
+       id="artist-search"
+       className="select"
+       placeholder=""
+       components={{
+         DropdownIndicator: () => null,
+         IndicatorSeparator: () => null
         }}
         openmenuonclick={false}
         isClearable
         isSearchable
-      />
-      <button className="search-button" onClick={""}>
+        />
+        <button className="search-button" onClick={""}>
         Search
-      </button>
-    </form>
+        </button>
+        </form>
+        */
+      }
 
       <h4 className="form-create-title">Add a new Artist</h4>
       <form className="form-create">

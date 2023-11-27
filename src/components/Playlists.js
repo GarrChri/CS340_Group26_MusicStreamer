@@ -21,7 +21,7 @@ function Playlists() {
    const [userID, setUserID] = useState("");
    const [isPrivate, setIsPrivate] = useState("");
 
-   // Function to retrieve genres
+   // Function to retrieve playlists
    const loadPlaylists = async () => {
        const response = await fetch(`${API_ENDPOINT}/api/playlists`);
        const data = await response.json();
@@ -29,7 +29,7 @@ function Playlists() {
        setPlaylists(data);
    }
 
-   // function to create a new genre
+   // function to create a new playlist
    const createPlaylist = async () => {
        setIsPrivate(Number(isPrivate))
        const newPlaylist = {playlistName, userID, isPrivate}
@@ -45,7 +45,7 @@ function Playlists() {
        });
 
        if (response.status === 200) {
-           alert(`Added new playlist type ${playlistName}`);
+           alert(`Added new playlist: ${playlistName}`);
            loadPlaylists();
        } else {
            alert("New playlist not added. Check required fields");

@@ -18,14 +18,14 @@ function Releases() {
    const [artistID, setArtistID] = useState("");
    const [releaseTypeID, setReleaseTypeID] = useState("");
 
-   // Function to retrieve genres
+   // Function to retrieve releases
    const loadReleases = async () => {
        const response = await fetch(`${API_ENDPOINT}/api/releases`);
        const data = await response.json();
        setReleases(data);
    }
 
-   // function to create a new genre
+   // function to create a new release
    const createRelease = async () => {
        const newRelease = {releaseName, artistID, releaseTypeID}
        console.log(newRelease)
@@ -39,7 +39,7 @@ function Releases() {
        });
 
        if (response.status === 200) {
-           alert(`Added new release type ${releaseName}`);
+           alert(`Added new release ${releaseName}`);
            loadReleases();
        } else {
            alert("New item not added. Check required fields");

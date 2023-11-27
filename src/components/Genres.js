@@ -32,7 +32,7 @@ function Genres({id, name}){
         });
 
         if (response.status === 200) {
-            alert(`Added new genre ${genreName}`);
+            alert(`Added new genre: ${genreName}`);
             loadGenres();
         } else {
             alert("New item not added. Check required fields");

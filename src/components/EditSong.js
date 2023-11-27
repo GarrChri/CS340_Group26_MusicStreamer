@@ -20,7 +20,7 @@ function EditSong () {
     const streamCount = songToEdit.stream_count
 
     const updateSong = async () => {
-        // create new release type object from state vars
+        // create new song object from state vars
         const updatedSong = {songID, songName, releaseID, genreID, streamCount};
         console.log(updatedSong)
 
