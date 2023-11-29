@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Artists from './components/Artists';
+import EditArtistArtist from './components/EditArtist';
 import Releases from './components/Releases';
 import EditRelease from './components/EditRelease';
 import ReleaseTypes from './components/ReleaseTypes';
@@ -15,6 +16,7 @@ import EditGenre from './components/EditGenre';
 import Users from './components/Users';
 import EditUser from './components/EditUser';
 import Playlists from './components/Playlists';
+import EditPlaylist from './components/EditPlaylist';
 
 
 function App() {
@@ -26,7 +28,9 @@ function App() {
           <Route path="/users" element={<Users />} />
           <Route path="/editUser" element={<EditUser />} />
           <Route path="/playlists" element={<Playlists />} />
+          <Route path="/editPlaylist" element={<EditPlaylist />} />
           <Route path="/artists" element={<Artists />} />
+          <Route path="/editArtist" element={<EditArtist />} />
           <Route path="/songs" element={<Songs />} />
           <Route path="/editSong" element={<EditSong />} />
           <Route path="/releases" element={<Releases />} />
