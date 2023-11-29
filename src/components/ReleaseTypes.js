@@ -35,7 +35,7 @@ function ReleaseTypes() {
         });
 
         if (response.status === 200) {
-            alert(`Added new release type ${releaseTypeName}`);
+            alert(`Added new release type: ${releaseTypeName}`);
             loadReleaseTypes();
         } else {
             alert("New item not added. Check required fields");

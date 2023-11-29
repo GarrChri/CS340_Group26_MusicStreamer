@@ -50,7 +50,7 @@ function Songs() {
       });
 
       if (response.status === 200) {
-          alert(`Added new song ${songName}`);
+          alert(`Added new song: ${songName}`);
           loadSongs();
       } else {
           alert("New song not added. Check required fields");

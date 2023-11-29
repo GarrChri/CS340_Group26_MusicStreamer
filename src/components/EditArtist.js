@@ -54,8 +54,8 @@ function EditArtist () {
                     ></input>
                 <input 
                     type="text"
-                    name="artistID"
-                    value={artistID}
+                    name="artistDescription"
+                    value={artistDescription}
                     onChange={e => setArtistDescription(e.target.value)}
                     ></input>
                 <button type="button" onClick = {() => updateArtist()}>Submit</button>

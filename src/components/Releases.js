@@ -39,7 +39,7 @@ function Releases() {
        });
 
        if (response.status === 200) {
-           alert(`Added new release ${releaseName}`);
+           alert(`Added new release: ${releaseName}`);
            loadReleases();
        } else {
            alert("New item not added. Check required fields");

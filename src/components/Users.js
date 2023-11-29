@@ -39,7 +39,7 @@ function Users() {
        });
 
        if (response.status === 200) {
-           alert(`Added new user ${userName}`);
+           alert(`Added new user: ${userName}`);
            loadUsers();
        } else {
            alert("New user not added. Check required fields");
