@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Artists from './components/Artists';
-import EditArtistArtist from './components/EditArtist';
+import EditArtist from './components/EditArtist';
 import Releases from './components/Releases';
 import EditRelease from './components/EditRelease';
 import ReleaseTypes from './components/ReleaseTypes';

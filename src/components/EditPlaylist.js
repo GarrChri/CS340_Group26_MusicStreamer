@@ -15,15 +15,14 @@ function EditPlaylist () {
 
     
     const [playlistID, setPlaylistID] = useState(playlistToEdit.playlist_id);
-    const [playlistName, setPlaylisteName] = useState(playlistToEdit.playlist_name);
+    const [playlistName, setPlaylistName] = useState(playlistToEdit.playlist_name);
     const [userID, setUserID] = useState(playlistToEdit.user_id);
     const [isPrivate, setIsPrivate] = useState(playlistToEdit.id_private);
     
     const updatePlaylist = async () => {
         // create new playlist object from state vars
-        const updatedPlaylist = {playlistID, playlistName, artistID, playlistTypeID};
+        const updatedPlaylist = {playlistID, playlistName, userID, isPrivate};
         
-        console.log(updatedPlaylist)
         const response = await fetch(`${API_ENDPOINT}/api/playlists`,{
             method: "PUT",
             body: JSON.stringify(updatedPlaylist),
@@ -69,10 +68,10 @@ function EditPlaylist () {
                     <option value={1} >Yes</option>
                     <option value={0}>No</option>
                     </select>
-                <button type="button" onClick = {() => updateRelease()}>Submit</button>
+                <button type="button" onClick = {() => updatePlaylist()}>Submit</button>
             </form>
         </div>
     );
 }
 
-export default EditRelease;
+export default EditPlaylist;
