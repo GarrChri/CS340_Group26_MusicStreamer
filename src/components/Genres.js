@@ -32,7 +32,7 @@ function Genres({id, name}){
         });
 
         if (response.status === 200) {
-            alert(`Added new genre ${genreName}`);
+            alert(`Added new genre: ${genreName}`);
             loadGenres();
         } else {
             alert("New item not added. Check required fields");
@@ -40,6 +40,7 @@ function Genres({id, name}){
     }
 
     const deleteGenre = async (genre_id) => {
+        console.log(genre_id)
         const response = await fetch(`${API_ENDPOINT}/api/genres/${genre_id}`, {
             method: "DELETE"});
 

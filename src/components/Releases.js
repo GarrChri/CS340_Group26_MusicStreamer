@@ -1,14 +1,72 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 
-const releaseExamples = [
-  { id: 1, artist: "Linkin Park", name: "Meteora", type: "Album" },
-  { id: 2, artist: "Red Hot Chili Peppers", name: "By The Way", type: "Album" },
-  { id: 3, artist: "Queen", name: "A Night at the Opera", type: "Album" }
-];
+
+// Define API URL
+const API_ENDPOINT = process.env.REACT_APP_PROXY;
+
 
 // Creates the releases table
-function Releases({ id, artistId, name, type }) {
+function Releases() {
+
+   // Setting variables and state
+   const navigate = useNavigate();
+   const [releases, setReleases] = useState([]);
+   const [releaseName, setReleaseName] = useState("");
+   const [artistID, setArtistID] = useState("");
+   const [releaseTypeID, setReleaseTypeID] = useState("");
+
+   // Function to retrieve releases
+   const loadReleases = async () => {
+       const response = await fetch(`${API_ENDPOINT}/api/releases`);
+       const data = await response.json();
+       setReleases(data);
+   }
+
+   // function to create a new release
+   const createRelease = async () => {
+       const newRelease = {releaseName, artistID, releaseTypeID}
+       console.log(newRelease)
+
+       const response = await fetch(`${API_ENDPOINT}/api/releases`, {
+           method: "POST",
+           body: JSON.stringify(newRelease),
+           headers: {
+               "content-type": "application/json"
+           }
+       });
+
+       if (response.status === 200) {
+           alert(`Added new release: ${releaseName}`);
+           loadReleases();
+       } else {
+           alert("New item not added. Check required fields");
+       }
+   }
+
+   const deleteRelease = async (release_id) => {
+    console.log(release_id)
+       const response = await fetch(`${API_ENDPOINT}/api/releases/${release_id}`, {
+           method: "DELETE"});
+
+       if (response.status === 200){
+           alert(`Deleted release `);
+           loadReleases();
+       } else {
+           alert("Release not deleted");
+       }
+   }
+
+   const editRelease = (release) => {     
+       // navigate to edit page, sending state props to the edit page/component 
+       navigate("/editRelease", { state: { releaseToEdit: release }});
+   }
+
+   useEffect(() => {
+       loadReleases();
+   }, []);
   return (
     <div>
       <NavBar></NavBar>
@@ -23,17 +81,21 @@ function Releases({ id, artistId, name, type }) {
           </tr>
         </thead>
         <tbody>
-          {releaseExamples.map((release) => (
+          {releases.map((release) => (
             <tr className="table-rows">
-              <td>{release.id}</td>
-              <td>{release.artist}</td>
-              <td>{release.name}</td>
-              <td>{release.type}</td>
+              <td>{release.release_id}</td>
+              <td>{release.artist_id}</td>
+              <td>{release.release_name}</td>
+              <td>{release.release_type_id}</td>
               <td className="table-button">
-                <button>Edit</button>
+                <button 
+                    onClick={() => editRelease(release)}
+                >Edit</button>
               </td>
               <td className="table-button">
-                <button>Delete</button>
+                <button
+                    onClick={() => deleteRelease(release.release_id)}
+                >Delete</button>
               </td>
             </tr>
           ))}
@@ -42,13 +104,31 @@ function Releases({ id, artistId, name, type }) {
 
       <h4 className="form-create-title">Add a new Release</h4>
       <form className="form-create">
-        <label for="artist-name">Artist: </label>
-        <input type="text" id="artist-name" className="form-create-input" />
+        <label for="artist-id">Artist ID: </label>
+        <input 
+          name="artistID"
+          type="text" 
+          id="artist-id" 
+          className="form-create-input" 
+          onChange={e => setArtistID(e.target.value)}
+        />
         <label for="release-name">Release Name: </label>
-        <input type="text" id="release-name" className="form-create-input" />
-        <label for="release-type">Release Type: </label>
-        <input type="text" id="release-type" className="form-create-input" />
-        <button>Add</button>
+        <input 
+          name="releaseName"
+          type="text" 
+          id="release-name" 
+          className="form-create-input" 
+          onChange={e => setReleaseName(e.target.value)}
+        />
+        <label for="release-type-id">Release Type ID: </label>
+        <input 
+          name="releaseTypeID"
+          type="text" 
+          id="release-type-id" 
+          className="form-create-input" 
+          onChange={e => setReleaseTypeID(e.target.value)}
+        />
+        <button type="button" onClick = {() => createRelease()}>Add</button>
       </form>
     </div>
   );
