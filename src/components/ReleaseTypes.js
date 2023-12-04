@@ -42,17 +42,23 @@ function ReleaseTypes() {
         }
     }
 
-    const deleteReleaseType = async (release_type_id) => {
+    const deleteReleaseType = async (release_type_id, release_type_name) => {
         const response = await fetch(`${API_ENDPOINT}/api/releasetypes/${release_type_id}`, {
             method: "DELETE"});
 
         if (response.status === 200){
-            alert(`Deleted release type `);
+            alert(`Deleted ${release_type_name}`);
             loadReleaseTypes();
         } else {
             alert("Release type not deleted");
         }
     }
+
+    function confirmDelete (release_type_id, release_type_name) {
+        if (window.confirm(`Are you sure you want to delete the release type: ${release_type_name}?`)){
+            deleteReleaseType(release_type_id, release_type_name)
+    } 
+}
 
     const editReleaseType = (releaseType) => {     
         // navigate to edit page, sending state props to the edit page/component 
@@ -83,7 +89,7 @@ function ReleaseTypes() {
                                 onClick={() => editReleaseType(releaseType)}
                                 >Edit</button>
                             <button
-                                onClick={() => deleteReleaseType(releaseType.release_type_id)}
+                                onClick={() => confirmDelete(releaseType.release_type_id, releaseType.release_type_name)}
                                 >Delete</button>
                         </tr>
                         ))}
