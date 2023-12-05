@@ -47,17 +47,23 @@ function Artists() {
        }
    }
 
-   const deleteArtist = async (artist_id) => {
+   const deleteArtist = async (artist_id, artist_name) => {
     console.log(artist_id)
        const response = await fetch(`${API_ENDPOINT}/api/artists/${artist_id}`, {
            method: "DELETE"});
 
        if (response.status === 200){
-           alert(`Deleted artist `);
+           alert(`Deleted ${artist_name}`);
            loadArtists();
        } else {
            alert("Artist not deleted");
        }
+   }
+
+   function confirmDelete (artist_id, artist_name) {
+    if (window.confirm(`Are you sure you want to delete ${artist_name}?`)){
+        deleteArtist(artist_id, artist_name)
+} 
    }
 
    const editArtist = (artist) => {     
@@ -93,7 +99,7 @@ function Artists() {
               </td>
               <td className="table-button">
                 <button
-                    onClick={() => deleteArtist(artist.artist_id)}
+                    onClick={() => confirmDelete(artist.artist_id, artist.artist_name)}
                 >Delete</button>
               </td>
             </tr>

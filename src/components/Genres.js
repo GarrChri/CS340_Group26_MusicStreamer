@@ -39,18 +39,24 @@ function Genres({id, name}){
         }
     }
 
-    const deleteGenre = async (genre_id) => {
+    const deleteGenre = async (genre_id, genre_name) => {
         console.log(genre_id)
         const response = await fetch(`${API_ENDPOINT}/api/genres/${genre_id}`, {
             method: "DELETE"});
 
         if (response.status === 200){
-            alert(`Deleted genre `);
+            alert(`Deleted ${genre_name}`);
             loadGenres();
         } else {
             alert("Genre not deleted");
         }
     }
+
+    function confirmDelete (genre_id, genre_name) {
+        if (window.confirm(`Are you sure you want to delete ${genre_name}?`)){
+            deleteGenre(genre_id, genre_name)
+    } 
+       }
 
     const editGenre = (genre) => {     
         // navigate to edit page, sending state props to the edit page/component 
@@ -78,12 +84,16 @@ function Genres({id, name}){
                         <tr className="table-rows">
                             <td>{genre.genre_id}</td>
                             <td>{genre.genre_name}</td>
-                            <button 
-                                onClick={() => editGenre(genre)}
-                                >Edit</button>
-                            <button
-                                onClick={() => deleteGenre(genre.genre_id)}
-                                >Delete</button>
+                            <td className="table-button">
+                                <button 
+                                    onClick={() => editGenre(genre)}
+                                    >Edit</button>
+                            </td>
+                            <td className="table-button">
+                                <button
+                                    onClick={() => confirmDelete(genre.genre_id, genre.genre_name)}
+                                    >Delete</button>
+                            </td>
                         </tr>
                         ))}
                 </tbody>

@@ -57,17 +57,23 @@ function Songs() {
       }
   }
 
-  const deleteSong = async (song_id) => {
+  const deleteSong = async (song_id, song_name) => {
       const response = await fetch(`${API_ENDPOINT}/api/songs/${song_id}`, {
           method: "DELETE"});
 
       if (response.status === 200){
-          alert(`Deleted song `);
+          alert(`Deleted ${song_name}`);
           loadSongs();
       } else {
           alert("Song not deleted");
       }
   }
+
+  function confirmDelete (song_id, song_name) {
+    if (window.confirm(`Are you sure you want to delete ${song_name}?`)){
+        deleteSong(song_id, song_name)
+} 
+}
 
   const editSong = (song) => {     
       // navigate to edit page, sending state props to the edit page/component 
@@ -107,7 +113,7 @@ function Songs() {
               </td>
               <td className="table-button">
                   <button
-                      onClick={() => deleteSong(song.song_id)}
+                      onClick={() => confirmDelete(song.song_id, song.song_name)}
                       >Delete</button>
               </td>
             </tr>

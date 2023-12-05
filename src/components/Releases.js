@@ -46,17 +46,23 @@ function Releases() {
        }
    }
 
-   const deleteRelease = async (release_id) => {
+   const deleteRelease = async (release_id, release_name) => {
     console.log(release_id)
        const response = await fetch(`${API_ENDPOINT}/api/releases/${release_id}`, {
            method: "DELETE"});
 
        if (response.status === 200){
-           alert(`Deleted release `);
+           alert(`Deleted ${release_name}`);
            loadReleases();
        } else {
            alert("Release not deleted");
        }
+   }
+
+   function confirmDelete (release_id, release_name) {
+    if (window.confirm(`Are you sure you want to delete ${release_name}?`)){
+        deleteRelease(release_id, release_name)
+} 
    }
 
    const editRelease = (release) => {     
@@ -94,7 +100,7 @@ function Releases() {
               </td>
               <td className="table-button">
                 <button
-                    onClick={() => deleteRelease(release.release_id)}
+                    onClick={() => confirmDelete(release.release_id, release.release_name)}
                 >Delete</button>
               </td>
             </tr>

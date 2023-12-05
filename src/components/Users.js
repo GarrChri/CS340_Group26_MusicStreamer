@@ -46,17 +46,23 @@ function Users() {
        }
    }
 
-   const deleteUser = async (user_id) => {
+   const deleteUser = async (user_id, user_name) => {
     console.log(user_id)
        const response = await fetch(`${API_ENDPOINT}/api/users/${user_id}`, {
            method: "DELETE"});
 
        if (response.status === 200){
-           alert(`Deleted user `);
+           alert(`Deleted ${user_name}`);
            loadUsers();
        } else {
            alert("User not deleted");
        }
+   }
+
+   function confirmDelete (user_id, user_name) {
+    if (window.confirm(`Are you sure you want to delete ${user_name}?`)){
+        deleteUser(user_id, user_name)
+} 
    }
 
    const editUser = (user) => {     
@@ -92,7 +98,7 @@ function Users() {
               </td>
               <td className="table-button">
                 <button
-                    onClick={() => deleteUser(user.user_id)}
+                    onClick={() => confirmDelete(user.user_id, user.user_name)}
                 >Delete</button>
               </td>
             </tr>

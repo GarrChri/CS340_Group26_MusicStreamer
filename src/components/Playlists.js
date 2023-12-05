@@ -52,17 +52,23 @@ function Playlists() {
        }
    }
 
-   const deletePlaylist = async (playlist_id) => {
+   const deletePlaylist = async (playlist_id, playlist_name) => {
     console.log(playlist_id)
        const response = await fetch(`${API_ENDPOINT}/api/playlists/${playlist_id}`, {
            method: "DELETE"});
 
        if (response.status === 200){
-           alert(`Deleted playlist `);
+           alert(`Deleted ${playlist_name}`);
            loadPlaylists();
        } else {
            alert("Playlist not deleted");
        }
+   }
+
+   function confirmDelete (playlist_id, playlist_name) {
+    if (window.confirm(`Are you sure you want to delete ${playlist_name}?`)){
+        deletePlaylist(playlist_id, playlist_name)
+} 
    }
 
    const editPlaylist = (playlist) => {     
@@ -101,7 +107,7 @@ function Playlists() {
               </td>
               <td className="table-button">
                 <button
-                    onClick={() => deletePlaylist(playlist.playlist_id)}
+                    onClick={() => confirmDelete(playlist.playlist_id, playlist.playlist_name)}
                 >Delete</button>
               </td>
             </tr>

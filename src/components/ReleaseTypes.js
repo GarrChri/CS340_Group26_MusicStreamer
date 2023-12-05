@@ -55,7 +55,7 @@ function ReleaseTypes() {
     }
 
     function confirmDelete (release_type_id, release_type_name) {
-        if (window.confirm(`Are you sure you want to delete the release type: ${release_type_name}?`)){
+        if (window.confirm(`Are you sure you want to delete ${release_type_name}?`)){
             deleteReleaseType(release_type_id, release_type_name)
     } 
 }
@@ -85,12 +85,16 @@ function ReleaseTypes() {
                         <tr className="table-rows">
                             <td>{releaseType.release_type_id}</td>
                             <td>{releaseType.release_type_name}</td>
-                            <button 
-                                onClick={() => editReleaseType(releaseType)}
-                                >Edit</button>
-                            <button
-                                onClick={() => confirmDelete(releaseType.release_type_id, releaseType.release_type_name)}
-                                >Delete</button>
+                            <td className="table-button">
+                                <button 
+                                    onClick={() => editReleaseType(releaseType)}
+                                    >Edit</button>
+                            </td>
+                            <td className="table-button">
+                                <button
+                                    onClick={() => confirmDelete(releaseType.release_type_id, releaseType.release_type_name)}
+                                    >Delete</button>
+                            </td>
                         </tr>
                         ))}
                 </tbody>
