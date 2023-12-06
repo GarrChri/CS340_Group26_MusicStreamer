@@ -18,7 +18,7 @@ const Home = () => {
           Playlists
         </Link>
         <Link className="home-nav-link" to="/artists">
-          Arists
+          Artists
         </Link>
         <Link className="home-nav-link" to="/songs">
           Songs

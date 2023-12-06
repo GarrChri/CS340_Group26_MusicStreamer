@@ -27,7 +27,7 @@ function Songs() {
     const data = await response.json();
     setSongs(data);
   }
-
+  
   // function to load releases
   const loadReleases = async () => {
     const response = await fetch(`${API_ENDPOINT}/api/releases`);
@@ -42,7 +42,6 @@ function Songs() {
   const loadGenres = async () => {
     const response = await fetch(`${API_ENDPOINT}/api/genres`);
     const data = await response.json();
-    
     setGenreMap(data.map((genre) => (
       {value: genre.genre_id, label: genre.genre_name}
     )));
@@ -130,6 +129,33 @@ function Songs() {
           >Search</button>
       </form>
 
+      <h4 className="form-create-title">Add a new Song</h4>
+      <form className="form-create" action="">
+        <label for="songName">Song Name: </label>
+        <input 
+          name="songName"
+          type="text" 
+          id="song-name" 
+          className="form-create-input" 
+          onChange={e => setSongName(e.target.value)}
+        />
+        <label for="releaseID">Release: </label>
+        <Select 
+          options={releaseMap}
+          onChange={(selected) => setReleaseID(selected.value)}
+          name="releaseID"
+          id="release-id" 
+        />
+        <label for="genreID">Genre: </label>
+        <Select 
+          options={genreMap}
+          onChange={(selected) => setGenreID(selected.value)}
+          name="genreID"
+          id="genreID" 
+        />
+        <button type="button" onClick = {() => createSong()}>Add</button>
+      </form>
+
       <table className="table">
         <thead>
           <tr className="table-rows">
@@ -162,47 +188,6 @@ function Songs() {
           ))}
         </tbody>
       </table>
-
-      <h4 className="form-create-title">Add a new Song</h4>
-      <form className="form-create" action="">
-        <label for="songName">Song: </label>
-        <input 
-          name="songName"
-          type="text" 
-          id="song-name" 
-          className="form-create-input" 
-          onChange={e => setSongName(e.target.value)}
-        />
-        <label for="releaseID">Release: </label>
-        {/* <input 
-          name="releaseID"
-          type="text" 
-          id="release-id" 
-          className="form-create-input" 
-          onChange={e => setReleaseID(e.target.value)}
-        /> */}
-        <Select 
-          options={releaseMap}
-          onChange={(selected) => setReleaseID(selected.value)}
-          name="releaseID"
-          id="release-id" 
-        />
-        <label for="genreID">Genre ID: </label>
-        {/* <input 
-          name="genreID"
-          type="text" 
-          id="genreID" 
-          className="form-create-input" 
-          onChange={e => setGenreID(e.target.value)}
-        /> */}
-        <Select 
-          options={genreMap}
-          onChange={(selected) => setGenreID(selected.value)}
-          name="genreID"
-          id="genreID" 
-        />
-        <button type="button" onClick = {() => createSong()}>Add</button>
-      </form>
     </div>
   );
 }
