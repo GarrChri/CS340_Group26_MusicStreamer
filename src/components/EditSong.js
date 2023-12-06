@@ -66,6 +66,9 @@ function EditSong () {
                     onChange={e => setGenreID(e.target.value)}
                     ></input>
                 <button type="button" onClick = {() => updateSong()}>Submit</button>
+                <button type="button" onClick = {
+                    () => navigate("../songs")
+                    }>Cancel</button>
             </form>
         </div>
     );
