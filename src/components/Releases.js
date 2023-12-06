@@ -121,7 +121,7 @@ function Releases() {
           onChange={(selected) => setArtistID(selected.value)}
         />
         
-        <label for="release-type-id">Release Type ID: </label>
+        <label for="release-type-id">Release Type: </label>
         <Select
           name="releaseTypeID"
           id="release-type-id" 

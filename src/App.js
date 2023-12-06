@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Artists from './components/Artists';
+import ArtistPage from './components/ArtistPage';
 import EditArtist from './components/EditArtist';
 import Releases from './components/Releases';
 import EditRelease from './components/EditRelease';
@@ -30,6 +31,7 @@ function App() {
           <Route path="/playlists" element={<Playlists />} />
           <Route path="/editPlaylist" element={<EditPlaylist />} />
           <Route path="/artists" element={<Artists />} />
+          <Route path="/artistPage" element={<ArtistPage />} />
           <Route path="/editArtist" element={<EditArtist />} />
           <Route path="/songs" element={<Songs />} />
           <Route path="/editSong" element={<EditSong />} />
