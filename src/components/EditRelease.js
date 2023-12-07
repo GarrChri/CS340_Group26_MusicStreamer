@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import NavBar from "./NavBar";
+import Select from "react-select";
 
 // Define API URL
 const API_ENDPOINT = process.env.REACT_APP_PROXY;
@@ -12,7 +13,8 @@ function EditRelease () {
     const navigate = useNavigate();
     const location = useLocation();
     const releaseToEdit = location.state.releaseToEdit;
-
+    const artistMap = location.state.artistMap;
+    const releaseTypeMap = location.state.releaseTypeMap;
     
     const [releaseID, setReleaseID] = useState(releaseToEdit.release_id);
     const [artistID, setArtistID] = useState(releaseToEdit.artist_id);
@@ -53,18 +55,22 @@ function EditRelease () {
                     value={releaseName}
                     onChange={e => setReleaseName(e.target.value)}
                     ></input>
-                <input 
-                    type="text"
-                    name="artistID"
-                    value={artistID}
-                    onChange={e => setArtistID(e.target.value)}
-                    ></input>
-                <input 
-                    type="text"
+                <label for="releaseArtist">Artist: </label>
+                <Select 
+                    id="releaseArtist"
+                    className="select"
+                    options={artistMap}
+                    onChange={(selected) => setArtistID(selected.value)}
+                    />
+                    
+                <label for="release-type-id">Release Type: </label>
+                <Select
                     name="releaseTypeID"
-                    value={releaseTypeID}
-                    onChange={e => setReleaseTypeID(e.target.value)}
-                    ></input>
+                    id="release-type-id" 
+                    className="select"
+                    options={releaseTypeMap}
+                    onChange={(selected) => setReleaseTypeID(selected.value)}
+                    />
                 <button type="button" onClick = {() => updateRelease()}>Submit</button>
             </form>
         </div>

@@ -37,7 +37,6 @@ function Songs() {
     )));
   }
 
-
   // function to load genres
   const loadGenres = async () => {
     const response = await fetch(`${API_ENDPOINT}/api/genres`);
@@ -95,7 +94,11 @@ function Songs() {
 
   const editSong = (song) => {     
       // navigate to edit page, sending state props to the edit page/component 
-      navigate("/editSong", { state: { songToEdit: song }});
+      navigate("/editSong", { state: { 
+        songToEdit: song,
+        releaseMap: releaseMap,
+        genreMap: genreMap
+      }});
   }
 
   const searchSongs = (searchQuery) => {

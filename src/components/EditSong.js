@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import NavBar from "./NavBar";
+import Select from "react-select";
 
 // Define API URL
 const API_ENDPOINT = process.env.REACT_APP_PROXY;
@@ -12,6 +13,8 @@ function EditSong () {
     const navigate = useNavigate();
     const location = useLocation();
     const songToEdit = location.state.songToEdit;
+    const releaseMap = location.state.releaseMap;
+    const genreMap = location.state.genreMap;
 
     const [songName, setSongName] = useState(songToEdit.song_name);
     const [songID, setSongID] = useState(songToEdit.song_id);
@@ -43,28 +46,30 @@ function EditSong () {
     return (
         <div>
             <NavBar></NavBar>
-            <h2>Edit</h2>
-            
-            <h4 className="form-create-title">Editing {songToEdit.song_name}</h4>
+            <h2>Edit Song</h2>
+            <h4 className="form-create-title">Editing "{songToEdit.song_name}"</h4>
             <form className="form-create" action="">
+                <label for="songName">Edit Song Name:</label>
                 <input 
                     type="text"
                     name="songName"
                     value={songName}
                     onChange={e => setSongName(e.target.value)}
                     ></input>
-                <input 
-                    type="text"
+                <label for="releaseID">Select Release:</label>
+                <Select 
+                    options={releaseMap}
+                    onChange={(selected) => setReleaseID(selected.value)}
                     name="releaseID"
-                    value={releaseID}
-                    onChange={e => setReleaseID(e.target.value)}
-                    ></input>
-                <input 
-                    type="text"
+                    id="release-id" 
+                />
+                <label for="genreID">Select Genre:</label>
+                <Select 
+                    options={genreMap}
+                    onChange={(selected) => setGenreID(selected.value)}
                     name="genreID"
-                    value={genreID}
-                    onChange={e => setGenreID(e.target.value)}
-                    ></input>
+                    id="genreID" 
+                />
                 <button type="button" onClick = {() => updateSong()}>Submit</button>
                 <button type="button" onClick = {
                     () => navigate("../songs")

@@ -72,6 +72,20 @@ function ReleaseTypes() {
       <div>
           <NavBar></NavBar>
           <h2>Release Types</h2>
+
+          <h4 className="form-create-title">Add a new Release Type</h4>
+            <form className="form-create" action="">
+              <label for="releaseTypeName">Name: </label>
+              <input
+                type="text"
+                id="release-type-name"
+                className="form-create-input"
+                onChange={e => setReleaseTypeName(e.target.value)}
+              />
+              <button type="button" onClick = {() => createReleaseType()}>Add</button>
+            </form>
+
+            <h4 className="form-create-title">All Release Types</h4>
           <table className="table">
                 <thead>
                       <tr className="table-rows">
@@ -99,18 +113,6 @@ function ReleaseTypes() {
                         ))}
                 </tbody>
             </table>
-
-            <h4 className="form-create-title">Add a new Release Type</h4>
-            <form className="form-create" action="">
-              <label for="releaseTypeName">Name: </label>
-              <input
-                type="text"
-                id="release-type-name"
-                className="form-create-input"
-                onChange={e => setReleaseTypeName(e.target.value)}
-              />
-              <button type="button" onClick = {() => createReleaseType()}>Add</button>
-            </form>
     </div>
   );
 }
