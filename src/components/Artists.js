@@ -18,12 +18,16 @@ function Artists() {
    const [artistID, setArtistID] = useState("");
    const [artistName, setArtistName] = useState("");
    const [artistDescription, setArtistDescription] = useState("");
+   const [artistMap, setArtistMap] = useState([]);
 
    // Function to retrieve artists
    const loadArtists = async () => {
        const response = await fetch(`${API_ENDPOINT}/api/artists`);
        const data = await response.json();
        setArtists(data);
+       setArtistMap(data.map((artist) => (
+        {value: artist.artist_id, label: artist.artist_name}    
+      )));
    }
 
    // function to create a new artist
@@ -47,6 +51,7 @@ function Artists() {
        }
    }
 
+   // delete an artist
    const deleteArtist = async (artist_id, artist_name) => {
     console.log(artist_id)
        const response = await fetch(`${API_ENDPOINT}/api/artists/${artist_id}`, {
@@ -71,13 +76,69 @@ function Artists() {
        navigate("/editArtist", { state: { artistToEdit: artist }});
    }
 
+  // event handler for searching for an artists, 
+  // takes user to artist page
+   const handleSearch = (e) => {
+    e.preventDefault();
+    if (!artistID){
+      alert("Please select an artist from the dropdown");
+    } else {
+      console.log(artistID);
+      navigate("/artistPage", { state: { artistID : artistID }});
+    }
+   }
+
    useEffect(() => {
        loadArtists();
    }, []);
+
   return (
     <div>
       <NavBar></NavBar>
       <h2>Artists</h2>
+      <h4>Search for an Artist</h4>
+       <form action="" className="search-form">
+        <Select
+          id="artist-search"
+          className="select"
+          placeholder=""
+          components={{
+          DropdownIndicator: () => null,
+          IndicatorSeparator: () => null
+          }}
+          options={artistMap}
+          onChange={(selected) => setArtistID(selected.value)}
+          openmenuonclick={false}
+          isClearable
+          isSearchable
+        />
+        <button className="search-button" onClick={handleSearch}>
+        Search 
+        </button>
+        </form>
+
+      <h4 className="form-create-title">Add a new Artist</h4>
+      <form className="form-create">  
+        <label for="artist-name">Name: </label>
+        <input 
+          name="artistName"
+          type="text" 
+          id="artist-name" 
+          className="form-create-input" 
+          onChange={e => setArtistName(e.target.value)}
+        />
+        <label for="artist-description">Description: </label>
+        <input 
+          name="artistDescription"
+          type="text" 
+          id="artist-description" 
+          className="form-create-input" 
+          onChange={e => setArtistDescription(e.target.value)}
+        />
+        <button type="button" onClick = {() => createArtist()}>Add</button>
+      </form>
+
+      <h4>Artist List</h4>
       <table className="table">
         <thead>
           <tr className="table-rows">
@@ -106,50 +167,6 @@ function Artists() {
           ))}
         </tbody>
       </table>
-
-      {/**
-       * 
-       <h4>Search for an Artist</h4>
-       <form action="" className="search-form">
-       <Select
-       id="artist-search"
-       className="select"
-       placeholder=""
-       components={{
-         DropdownIndicator: () => null,
-         IndicatorSeparator: () => null
-        }}
-        openmenuonclick={false}
-        isClearable
-        isSearchable
-        />
-        <button className="search-button" onClick={""}>
-        Search
-        </button>
-        </form>
-        */
-      }
-
-      <h4 className="form-create-title">Add a new Artist</h4>
-      <form className="form-create">
-        <label for="artist-name">Name: </label>
-        <input 
-          name="artistName"
-          type="text" 
-          id="artist-name" 
-          className="form-create-input" 
-          onChange={e => setArtistName(e.target.value)}
-        />
-        <label for="artist-description">Description: </label>
-        <input 
-          name="artistDescription"
-          type="text" 
-          id="artist-description" 
-          className="form-create-input" 
-          onChange={e => setArtistDescription(e.target.value)}
-        />
-        <button type="button" onClick = {() => createArtist()}>Add</button>
-      </form>
     </div>
   );
 }

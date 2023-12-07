@@ -32,7 +32,7 @@ function EditArtist () {
         });
 
         if (response.status === 200){
-            alert(`Updated artist to ${artistName}`);
+            alert(`Updated artist ${artistName}`);
             navigate("/artists");
         } else {
             alert("Artist not updated");
@@ -43,22 +43,27 @@ function EditArtist () {
         <div>
             <NavBar></NavBar>
             <h2>Edit</h2>
-
             <h4 className="form-create-title">Editing {artistToEdit.artist_name}</h4>
             <form className="form-create" action="">
+                <label for="artistName">Artist Name:</label>
                 <input 
                     type="text"
                     name="artistName"
                     value={artistName}
                     onChange={e => setArtistName(e.target.value)}
                     ></input>
-                <input 
-                    type="text"
+                <label for="artistDescription">Description:</label>
+                <textarea
+                    rows="8"
+                    cols="30"
                     name="artistDescription"
                     value={artistDescription}
                     onChange={e => setArtistDescription(e.target.value)}
-                    ></input>
+                    ></textarea>
                 <button type="button" onClick = {() => updateArtist()}>Submit</button>
+                <button type="button" onClick = {
+                    () => navigate("../artistPage", {state: {artistID: artistID}})
+                    }>Cancel</button>
             </form>
         </div>
     );

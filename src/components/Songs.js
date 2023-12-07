@@ -4,10 +4,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Select from "react-select";
 import NavBar from "./NavBar";
 
-
 // Define API URL
 const API_ENDPOINT = process.env.REACT_APP_PROXY;
-
 
 // Creates the songs table
 function Songs() {
@@ -15,18 +13,38 @@ function Songs() {
   // Setting variables and state
   const navigate = useNavigate();
   const [songs, setSongs] = useState([]);
+  const [releaseMap, setReleaseMap] = useState([]);
   const [songName, setSongName] = useState("");
   const [singleSongName, setSingleSongName] = useState("");
   const [releaseID, setReleaseID] = useState("");
-  const [genreID, setGenreID] = useState("");
+  const [genreID, setGenreID] = useState();
+  const [genreMap, setGenreMap] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Function to retrieve songs
-  const loadSongs = async () => {
+  const loadSongs = async () => {    
+    const response = await fetch(`${API_ENDPOINT}/api/songs`);
+    const data = await response.json();
+    setSongs(data);
+  }
+  
+  // function to load releases
+  const loadReleases = async () => {
+    const response = await fetch(`${API_ENDPOINT}/api/releases`);
+    const data = await response.json();
+    setReleaseMap(data.map((release) => (
+      {value: release.release_id, label: release.release_name}
+    )));
+  }
 
-      const response = await fetch(`${API_ENDPOINT}/api/songs`);
-      const data = await response.json();
-      console.log(data)
-      setSongs(data);
+
+  // function to load genres
+  const loadGenres = async () => {
+    const response = await fetch(`${API_ENDPOINT}/api/genres`);
+    const data = await response.json();
+    setGenreMap(data.map((genre) => (
+      {value: genre.genre_id, label: genre.genre_name}
+    )));
   }
 
   // Function to retrieve a single song
@@ -72,7 +90,7 @@ function Songs() {
   function confirmDelete (song_id, song_name) {
     if (window.confirm(`Are you sure you want to delete ${song_name}?`)){
         deleteSong(song_id, song_name)
-} 
+  } 
 }
 
   const editSong = (song) => {     
@@ -80,21 +98,71 @@ function Songs() {
       navigate("/editSong", { state: { songToEdit: song }});
   }
 
+  const searchSongs = (searchQuery) => {
+    navigate("/songSearchResults", { state: { 
+      searchQuery: searchQuery
+    }});
+  }
+
   useEffect(() => {
       loadSongs();
+      loadGenres();
+      loadReleases();
   }, []);
 
   return (
     <div>
       <NavBar></NavBar>
       <h2>Songs</h2>
+      
+      <h4>Search for a Song</h4>
+      <form action="" className="search-form">
+        <label for="searchQuery"></label>
+        <input
+          type="text"
+          name="searchQuery"
+          className="form-create-input" 
+          onChange={e => setSearchQuery(e.target.value)}></input>
+        <button 
+          className="search-button"
+          onClick={() => {searchSongs(searchQuery)}}
+          >Search</button>
+      </form>
+
+      <h4 className="form-create-title">Add a new Song</h4>
+      <form className="form-create" action="">
+        <label for="songName">Song Name: </label>
+        <input 
+          name="songName"
+          type="text" 
+          id="song-name" 
+          className="form-create-input" 
+          onChange={e => setSongName(e.target.value)}
+        />
+        <label for="releaseID">Release: </label>
+        <Select 
+          options={releaseMap}
+          onChange={(selected) => setReleaseID(selected.value)}
+          name="releaseID"
+          id="release-id" 
+        />
+        <label for="genreID">Genre: </label>
+        <Select 
+          options={genreMap}
+          onChange={(selected) => setGenreID(selected.value)}
+          name="genreID"
+          id="genreID" 
+        />
+        <button type="button" onClick = {() => createSong()}>Add</button>
+      </form>
+
       <table className="table">
         <thead>
           <tr className="table-rows">
             <th>ID</th>
             <th>Song</th>
-            <th>Release ID</th>
-            <th>Genre ID</th>
+            <th>Release Name</th>
+            <th>Genre</th>
             <th>Stream Count</th>
           </tr>
         </thead>
@@ -103,8 +171,8 @@ function Songs() {
             <tr className="table-rows">
               <td>{song.song_id}</td>
               <td>{song.song_name}</td>
-              <td>{song.release_id}</td>
-              <td>{song.genre_id}</td>
+              <td>{song.release_name}</td>
+              <td>{song.genre_name}</td>
               <td>{song.stream_count}</td>
               <td className="table-button">
                   <button 
@@ -120,52 +188,6 @@ function Songs() {
           ))}
         </tbody>
       </table>
-
-      <h4>Search for a Song</h4>
-
-      <form action="" className="search-form">
-        <Select
-          className="select song-select"
-          placeholder=""
-          options={songs}
-          components={{
-            DropdownIndicator: () => null,
-            IndicatorSeparator: () => null
-          }}
-          isClearable
-          isSearchable
-        />
-        <button className="search-button">Search</button>
-      </form>
-
-      <h4 className="form-create-title">Add a new Song</h4>
-      <form className="form-create" action="">
-        <label for="songName">Song: </label>
-        <input 
-          name="songName"
-          type="text" 
-          id="song-name" 
-          className="form-create-input" 
-          onChange={e => setSongName(e.target.value)}
-        />
-        <label for="releaseID">Release ID: </label>
-        <input 
-          name="releaseID"
-          type="text" 
-          id="release-id" 
-          className="form-create-input" 
-          onChange={e => setReleaseID(e.target.value)}
-        />
-        <label for="genreID">Genre ID: </label>
-        <input 
-          name="genreID"
-          type="text" 
-          id="genreID" 
-          className="form-create-input" 
-          onChange={e => setGenreID(e.target.value)}
-        />
-        <button type="button" onClick = {() => createSong()}>Add</button>
-      </form>
     </div>
   );
 }

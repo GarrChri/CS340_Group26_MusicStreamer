@@ -18,7 +18,7 @@ const NavBar = () => {
                     Releases
                 </Link>
                 <Link  className="nav-link" to="/artists">
-                    Arists
+                    Artists
                 </Link>
                 <Link className="nav-link" to="/songs">
                     Songs
