@@ -39,10 +39,11 @@ function EditGenre () {
     return (
         <div>
             <NavBar></NavBar>
-            <h2>Edit</h2>
+            <h2>Edit a Genre</h2>
             
             <h4 className="form-create-title">Editing {genreToEdit.genre_name}</h4>
             <form className="form-create" action="">
+                <label for="genreName">Genre Name:</label>
                 <input 
                     type="text"
                     name="genreName"
@@ -50,6 +51,7 @@ function EditGenre () {
                     onChange={e => setGenreName(e.target.value)}
                     ></input>
                 <button type="button" onClick = {() => updateGenre()}>Submit</button>
+                <button type="button" onClick = {() => navigate("../genres")}>Cancel</button>
             </form>
         </div>
     );

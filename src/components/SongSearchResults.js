@@ -53,6 +53,7 @@ function SongSearchResults () {
         <div>
             <NavBar></NavBar>
             <h2>Search results for "{searchQuery}"</h2>
+            <a href="./songs">Go Back to Songs</a>
             <table className="table">
                 <thead>
                     <tr className="table-rows">

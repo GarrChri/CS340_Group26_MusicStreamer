@@ -44,6 +44,7 @@ function ArtistPage() {
         artist && releases && <div> 
           <NavBar></NavBar>
           <h2>{artist.artist_name}</h2>
+          
           <h3>Description:</h3>
           <p>{artist.artist_description}</p>
           <button onClick={() => editArtist(artist)}>Edit Artist</button>
@@ -67,7 +68,7 @@ function ArtistPage() {
                 ))}
             </tbody>
           </table>
-          
+          <a href="./artists">Back to Artists</a>
         </div>
       );
 }

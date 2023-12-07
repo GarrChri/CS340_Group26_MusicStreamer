@@ -41,10 +41,11 @@ function EditReleaseType () {
     return (
         <div>
             <NavBar></NavBar>
-            <h2>Edit</h2>
+            <h2>Edit Release Type</h2>
             
             <h4 className="form-create-title">Editing {releaseTypeToEdit.release_type_name}</h4>
             <form className="form-create" action="">
+                <label for="releaseTypeName">Release Type Name: </label>
                 <input 
                     type="text"
                     name="releaseTypeName"
@@ -52,6 +53,7 @@ function EditReleaseType () {
                     onChange={e => setReleaseTypeName(e.target.value)}
                     ></input>
                 <button type="button" onClick = {() => updateReleaseType()}>Submit</button>
+                <button type="button" onClick = {() => navigate("../releaseTypes")}>Cancel</button>
             </form>
         </div>
     );

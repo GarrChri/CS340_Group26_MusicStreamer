@@ -71,6 +71,21 @@ function Genres({id, name}){
         <div>
             <NavBar></NavBar>
             <h2>Genres</h2>
+
+            <h4 className="form-create-title">Add a New Genre</h4>
+            <form className="form-create" action="">
+                <label for="genreName">Genre Name: </label>
+                <input 
+                    name="genreName" 
+                    type="text" 
+                    id="genre-name" 
+                    className="form-create-input" 
+                    onChange={e => setGenreName(e.target.value)}
+                />
+                <button type="button" onClick = {() => createGenre()}>Add</button>
+            </form>
+
+            <h4 className="form-create-title">All Genres</h4>
             <table className="table">
                 <thead>
                     <tr className="table-rows">
@@ -99,18 +114,7 @@ function Genres({id, name}){
                 </tbody>
             </table>
 
-            <h4 className="form-create-title">Add a New Genre</h4>
-            <form className="form-create" action="">
-                <label for="genreName">Genre: </label>
-                <input 
-                    name="genreName" 
-                    type="text" 
-                    id="genre-name" 
-                    className="form-create-input" 
-                    onChange={e => setGenreName(e.target.value)}
-                />
-                <button type="button" onClick = {() => createGenre()}>Add</button>
-            </form>
+            
         </div>
     );
 }

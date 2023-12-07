@@ -89,7 +89,11 @@ function Releases() {
 
    const editRelease = (release) => {     
        // navigate to edit page, sending state props to the edit page/component 
-       navigate("/editRelease", { state: { releaseToEdit: release }});
+       navigate("/editRelease", { state: { 
+        releaseToEdit: release,
+        artistMap: artistMap,
+        releaseTypeMap: releaseTypeMap 
+      }});
    }
 
    useEffect(() => {
@@ -113,7 +117,7 @@ function Releases() {
           className="form-create-input" 
           onChange={e => setReleaseName(e.target.value)}
         />
-        <label>Artist: </label>
+        <label for="releaseArtist">Artist: </label>
         <Select 
           id="releaseArtist"
           className="select"
