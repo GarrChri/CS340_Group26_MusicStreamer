@@ -77,6 +77,30 @@ function Users() {
     <div>
       <NavBar></NavBar>
       <h2>Users</h2>
+
+      <h4 className="form-create-title">Add a new User</h4>
+      <form className="form-create">
+        <label for="user-name">Name: </label>
+        <input 
+          name="userName"
+          type="text" 
+          id="user-name" 
+          className="form-create-input" 
+          onChange={e => setUserName(e.target.value)}
+        />
+        <label for="user-email">Email: </label>
+        <input 
+          name="userEmail"
+          type="text" 
+          id="user-email" 
+          className="form-create-input" 
+          onChange={e => setUserEmail(e.target.value)}
+        />
+        <button type="button" onClick = {() => createUser()}>Add</button>
+      </form>
+
+      <h4 className="form-create-title">Active Users</h4>
+
       <table className="table">
         <thead>
           <tr className="table-rows">
@@ -106,26 +130,6 @@ function Users() {
         </tbody>
       </table>
 
-      <h4 className="form-create-title">Add a new User</h4>
-      <form className="form-create">
-        <label for="user-name">Name: </label>
-        <input 
-          name="userName"
-          type="text" 
-          id="user-name" 
-          className="form-create-input" 
-          onChange={e => setUserName(e.target.value)}
-        />
-        <label for="user-email">Email: </label>
-        <input 
-          name="userEmail"
-          type="text" 
-          id="user-email" 
-          className="form-create-input" 
-          onChange={e => setUserEmail(e.target.value)}
-        />
-        <button type="button" onClick = {() => createUser()}>Add</button>
-      </form>
     </div>
   );
 }

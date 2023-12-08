@@ -59,6 +59,7 @@ function EditUser () {
                     onChange={e => setUserEmail(e.target.value)}
                     ></input>
                 <button type="button" onClick = {() => updateUser()}>Submit</button>
+                <button type="button" onClick = {() => navigate("../users")}>Cancel</button>
             </form>
         </div>
     );

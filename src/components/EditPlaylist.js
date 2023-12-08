@@ -70,6 +70,7 @@ function EditPlaylist () {
                     <option value={0}>No</option>
                     </select>
                 <button type="button" onClick = {() => updatePlaylist()}>Submit</button>
+                <button type="button" onClick = {() => navigate("../playlists")}>Cancel</button>
             </form>
         </div>
     );

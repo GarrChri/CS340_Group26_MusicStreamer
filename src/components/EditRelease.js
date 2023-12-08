@@ -72,6 +72,7 @@ function EditRelease () {
                     onChange={(selected) => setReleaseTypeID(selected.value)}
                     />
                 <button type="button" onClick = {() => updateRelease()}>Submit</button>
+                <button type="button" onClick = {() => navigate("../releases")}>Cancel</button>
             </form>
         </div>
     );

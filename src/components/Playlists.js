@@ -88,39 +88,8 @@ function Playlists() {
     <div>
       <NavBar></NavBar>
       <h2>Playlists</h2>
-      <table className="table playlist-table">
-        <thead>
-          <tr className="table-rows">
-            <th>ID</th>
-            <th>Playlist Name</th>
-            <th>User ID</th>
-          </tr>
-        </thead>
-        <tbody>
-          {playlists.map((playlist) => (
-            <tr className="table-rows">
-              <td>{playlist.playlist_id}</td>
-              <td>{playlist.playlist_name}</td>
-              <td>{playlist.user_id}</td>
-              <td className="table-button">
-                <button
-                    onClick={() => viewPlaylist(playlist)}
-                >View</button>
-              </td>
-              <td className="table-button">
-                <button 
-                    onClick={() => editPlaylist(playlist)}
-                >Edit</button>
-              </td>
-              <td className="table-button">
-                <button
-                    onClick={() => confirmDelete(playlist.playlist_id, playlist.playlist_name)}
-                >Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+
+
 
       <h4 className="form-create-title">Create a new Playlist</h4>
       <form className="form-create">
@@ -155,6 +124,41 @@ function Playlists() {
         <button type="button" onClick = {() => createPlaylist()}>Add</button>
       </form>
 
+      <h4 className="form-create-title">User Playlists</h4>
+
+      <table className="table playlist-table">
+        <thead>
+          <tr className="table-rows">
+            <th>ID</th>
+            <th>Playlist Name</th>
+            <th>User ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          {playlists.map((playlist) => (
+            <tr className="table-rows">
+              <td>{playlist.playlist_id}</td>
+              <td>{playlist.playlist_name}</td>
+              <td>{playlist.user_id}</td>
+              <td className="table-button">
+                <button
+                    onClick={() => viewPlaylist(playlist)}
+                >View</button>
+              </td>
+              <td className="table-button">
+                <button 
+                    onClick={() => editPlaylist(playlist)}
+                >Edit</button>
+              </td>
+              <td className="table-button">
+                <button
+                    onClick={() => confirmDelete(playlist.playlist_id, playlist.playlist_name)}
+                >Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
     </div>
   );
