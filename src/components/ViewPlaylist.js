@@ -20,7 +20,6 @@ function ViewPlaylist () {
         const response = await fetch(`${API_ENDPOINT}/api/playlistSongs?playlistID=${playlistID}`);
         const data = await response.json();
         setPlaylist(data);
-        console.log(data)
     }
 
     const navigateBack = () => {
@@ -39,12 +38,14 @@ function ViewPlaylist () {
         <thead>
           <tr className="table-rows">
             <th>Song</th>
+            <th>Artist</th>
           </tr>
         </thead>
         <tbody>
           {playlist && playlist.map((song) => (
             <tr className="table-rows">
               <td>{song.song_name}</td>
+              <td>{song.artist_name}</td>
             </tr>
           ))}
         </tbody>
