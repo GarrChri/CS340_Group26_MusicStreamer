@@ -77,6 +77,7 @@ function Playlists() {
    }
 
    const viewPlaylist = async (playlist) => {
+    // navigate to the playlist view page, sending state props for selected playlist
     navigate("/viewPlaylist", { state: { playlistToView: playlist }});
    }
 

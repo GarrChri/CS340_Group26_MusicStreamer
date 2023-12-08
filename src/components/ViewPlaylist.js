@@ -8,6 +8,7 @@ const API_ENDPOINT = process.env.REACT_APP_PROXY;
 
 function ViewPlaylist () {
 
+    // Setting variables and state
     const navigate = useNavigate();
     const location = useLocation();
     const playlistToView = location.state.playlistToView;
@@ -16,12 +17,14 @@ function ViewPlaylist () {
     const [playlistID, setPlaylistID] = useState(playlistToView.playlist_id);
     const [playlistName, setPlaylistName] = useState(playlistToView.playlist_name);
 
+    // function to retrieve the playlist
     const loadPlaylist = async () => {
         const response = await fetch(`${API_ENDPOINT}/api/playlistSongs?playlistID=${playlistID}`);
         const data = await response.json();
         setPlaylist(data);
     }
 
+    // function to return to the playlist page
     const navigateBack = () => {
         navigate('/playlists')            
     }
