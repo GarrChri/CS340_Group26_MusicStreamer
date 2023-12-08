@@ -85,6 +85,10 @@ h5 {
   margin-top: 2em;
 }
 
+.playlist-back-button {
+  margin-top: 2em;
+}
+
 .form-create{
   text-align: left;
   max-width:fit-content;

@@ -19,6 +19,7 @@ import Users from './components/Users';
 import EditUser from './components/EditUser';
 import Playlists from './components/Playlists';
 import EditPlaylist from './components/EditPlaylist';
+import ViewPlaylist from './components/ViewPlaylist';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/editUser" element={<EditUser />} />
           <Route path="/playlists" element={<Playlists />} />
           <Route path="/editPlaylist" element={<EditPlaylist />} />
+          <Route path="/viewPlaylist" element={<ViewPlaylist />} />
           <Route path="/artists" element={<Artists />} />
           <Route path="/artistPage" element={<ArtistPage />} />
           <Route path="/editArtist" element={<EditArtist />} />

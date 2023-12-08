@@ -59,7 +59,7 @@ function Users() {
        }
    }
 
-   function confirmDelete (user_id, user_name) {
+   const confirmDelete = (user_id, user_name) => {
     if (window.confirm(`Are you sure you want to delete ${user_name}?`)){
         deleteUser(user_id, user_name)
 } 

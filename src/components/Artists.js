@@ -65,7 +65,7 @@ function Artists() {
        }
    }
 
-   function confirmDelete (artist_id, artist_name) {
+   const confirmDelete = (artist_id, artist_name) => {
     if (window.confirm(`Are you sure you want to delete ${artist_name}?`)){
         deleteArtist(artist_id, artist_name)
 } 

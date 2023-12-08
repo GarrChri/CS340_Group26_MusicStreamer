@@ -54,7 +54,7 @@ function ReleaseTypes() {
         }
     }
 
-    function confirmDelete (release_type_id, release_type_name) {
+    const confirmDelete = (release_type_id, release_type_name) => {
         if (window.confirm(`Are you sure you want to delete ${release_type_name}?`)){
             deleteReleaseType(release_type_id, release_type_name)
     } 

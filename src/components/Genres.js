@@ -52,7 +52,7 @@ function Genres({id, name}){
         }
     }
 
-    function confirmDelete (genre_id, genre_name) {
+    const confirmDelete = (genre_id, genre_name) => {
         if (window.confirm(`Are you sure you want to delete ${genre_name}?`)){
             deleteGenre(genre_id, genre_name)
     } 

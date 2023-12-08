@@ -86,7 +86,7 @@ function Songs() {
       }
   }
 
-  function confirmDelete (song_id, song_name) {
+  const confirmDelete = (song_id, song_name) => {
     if (window.confirm(`Are you sure you want to delete ${song_name}?`)){
         deleteSong(song_id, song_name)
   } 

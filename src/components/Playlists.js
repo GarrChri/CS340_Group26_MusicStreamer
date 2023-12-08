@@ -65,7 +65,7 @@ function Playlists() {
        }
    }
 
-   function confirmDelete (playlist_id, playlist_name) {
+   const confirmDelete = (playlist_id, playlist_name) => {
     if (window.confirm(`Are you sure you want to delete ${playlist_name}?`)){
         deletePlaylist(playlist_id, playlist_name)
 } 
@@ -74,6 +74,10 @@ function Playlists() {
    const editPlaylist = (playlist) => {     
        // navigate to edit page, sending state props to the edit page/component 
        navigate("/editPlaylist", { state: { playlistToEdit: playlist }});
+   }
+
+   const viewPlaylist = async (playlist) => {
+    navigate("/viewPlaylist", { state: { playlistToView: playlist }});
    }
 
    useEffect(() => {
@@ -98,7 +102,9 @@ function Playlists() {
               <td>{playlist.playlist_name}</td>
               <td>{playlist.user_id}</td>
               <td className="table-button">
-                <button>View</button>
+                <button
+                    onClick={() => viewPlaylist(playlist)}
+                >View</button>
               </td>
               <td className="table-button">
                 <button 

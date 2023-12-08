@@ -81,7 +81,7 @@ function Releases() {
        }
    }
 
-   function confirmDelete (release_id, release_name) {
+   const confirmDelete = (release_id, release_name) => {
     if (window.confirm(`Are you sure you want to delete ${release_name}?`)){
         deleteRelease(release_id, release_name)
 } 
