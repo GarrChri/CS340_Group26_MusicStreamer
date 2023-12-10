@@ -46,34 +46,49 @@ function EditRelease () {
         <div>
             <NavBar></NavBar>
             <h2>Edit</h2>
+            <div className="form-edit-container">
 
-            <h4 className="form-create-title">Editing {releaseToEdit.release_name}</h4>
-            <form className="form-create" action="">
-                <input 
-                    type="text"
-                    name="releaseName"
-                    value={releaseName}
-                    onChange={e => setReleaseName(e.target.value)}
-                    ></input>
-                <label for="releaseArtist">Artist: </label>
-                <Select 
-                    id="releaseArtist"
-                    className="select"
-                    options={artistMap}
-                    onChange={(selected) => setArtistID(selected.value)}
-                    />
-                    
-                <label for="release-type-id">Release Type: </label>
-                <Select
-                    name="releaseTypeID"
-                    id="release-type-id" 
-                    className="select"
-                    options={releaseTypeMap}
-                    onChange={(selected) => setReleaseTypeID(selected.value)}
-                    />
-                <button type="button" onClick = {() => updateRelease()}>Submit</button>
-                <button type="button" onClick = {() => navigate("../releases")}>Cancel</button>
-            </form>
+                <form className="form-edit" action="">
+                    <h4 className="form-title">Editing {releaseToEdit.release_name}</h4>
+                    <label for="releaseName">Release Name:</label>
+                    <input 
+                        type="text"
+                        name="releaseName"
+                        value={releaseName}
+                        onChange={e => setReleaseName(e.target.value)}
+                        ></input>
+                    <label for="releaseArtist">Artist: </label>
+                    <Select 
+                        id="releaseArtist"
+                        className="select"
+                        options={artistMap}
+                        onChange={(selected) => setArtistID(selected.value)}
+                        />
+                        
+                    <label for="release-type-id">Release Type: </label>
+                    <Select
+                        name="releaseTypeID"
+                        id="release-type-id" 
+                        className="select"
+                        options={releaseTypeMap}
+                        onChange={(selected) => setReleaseTypeID(selected.value)}
+                        />
+                </form>
+                <div className="edit-button-container">
+
+                    <button 
+                        type="button"
+                        className="delete-button form-edit-button"
+                        onClick = {() => navigate("../releases")}
+                    >Cancel</button>
+                    <button 
+                        type="button" 
+                        className="add-button form-edit-button"
+                        onClick = {() => updateRelease()}
+                    >Submit</button>
+                </div>
+            </div>
+
         </div>
     );
 }

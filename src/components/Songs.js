@@ -118,7 +118,7 @@ function Songs() {
       <NavBar></NavBar>
       <h2>Songs</h2>
       
-      <h4>Search for a Song</h4>
+      <h3>Search for a Song</h3>
       <form action="" className="search-form">
         <label for="searchQuery"></label>
         <input
@@ -132,8 +132,8 @@ function Songs() {
           >Search</button>
       </form>
 
-      <h4 className="form-create-title">Add a new Song</h4>
       <form className="form-create" action="">
+        <h3 className="form-title">Add a new Song</h3>
         <label for="songName">Song Name: </label>
         <input 
           name="songName"
@@ -156,41 +156,52 @@ function Songs() {
           name="genreID"
           id="genreID" 
         />
-        <button type="button" onClick = {() => createSong()}>Add</button>
+        <button 
+          type="button" 
+          className="form-button add-button"
+          onClick = {() => createSong()}
+        >Add</button>
       </form>
 
-      <table className="table">
-        <thead>
-          <tr className="table-rows">
-            <th>ID</th>
-            <th>Song</th>
-            <th>Release Name</th>
-            <th>Genre</th>
-            <th>Stream Count</th>
-          </tr>
-        </thead>
-        <tbody>
-          {songs.map((song) => (
-            <tr className="table-rows">
-              <td>{song.song_id}</td>
-              <td>{song.song_name}</td>
-              <td>{song.release_name}</td>
-              <td>{song.genre_name}</td>
-              <td>{song.stream_count}</td>
-              <td className="table-button">
-                  <button 
-                      onClick={() => editSong(song)}
-                      >Edit</button>
-              </td>
-              <td className="table-button">
-                  <button
-                      onClick={() => confirmDelete(song.song_id, song.song_name)}
-                      >Delete</button>
-              </td>
+      <div className="table-container">
+      <h3 className="table-title">Song List</h3>
+        <table className="table">
+          <thead>
+            <tr className="table-heading">
+              <th>ID</th>
+              <th>Song</th>
+              <th>Release Name</th>
+              <th>Genre</th>
+              <th>Stream Count</th>
+              <th></th>
+              <th></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {songs.map((song) => (
+              <tr className="table-rows">
+                <td>{song.song_id}</td>
+                <td>{song.song_name}</td>
+                <td>{song.release_name}</td>
+                <td>{song.genre_name}</td>
+                <td>{song.stream_count}</td>
+                <td className="table-button">
+                    <button 
+                      className="edit-button"
+                      onClick={() => editSong(song)}
+                    >Edit</button>
+                </td>
+                <td className="table-button">
+                    <button
+                      className="delete-button"
+                      onClick={() => confirmDelete(song.song_id, song.song_name)}
+                    >Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

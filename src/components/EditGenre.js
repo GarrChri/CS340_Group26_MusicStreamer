@@ -40,19 +40,30 @@ function EditGenre () {
         <div>
             <NavBar></NavBar>
             <h2>Edit a Genre</h2>
-            
-            <h4 className="form-create-title">Editing {genreToEdit.genre_name}</h4>
-            <form className="form-create" action="">
-                <label for="genreName">Genre Name:</label>
-                <input 
-                    type="text"
-                    name="genreName"
-                    value={genreName}
-                    onChange={e => setGenreName(e.target.value)}
-                    ></input>
-                <button type="button" onClick = {() => updateGenre()}>Submit</button>
-                <button type="button" onClick = {() => navigate("../genres")}>Cancel</button>
-            </form>
+            <div className="form-edit-container">
+                <form className="form-edit" action="">
+                    <h4 className="form-title">Editing: {genreToEdit.genre_name}</h4>
+                    <label for="genreName">Genre Name:</label>
+                    <input 
+                        type="text"
+                        name="genreName"
+                        value={genreName}
+                        onChange={e => setGenreName(e.target.value)}
+                        ></input>
+                </form>
+                <div className="edit-button-container">
+                    <button 
+                        type="button" 
+                        className="delete-button form-edit-button"
+                        onClick = {() => navigate("../genres")}
+                        >Cancel</button>
+                    <button 
+                        type="button" 
+                        className="add-button form-edit-button"
+                        onClick = {() => updateGenre()}
+                        >Submit</button>
+                </div>
+            </div>
         </div>
     );
 }

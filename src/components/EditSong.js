@@ -46,35 +46,46 @@ function EditSong () {
     return (
         <div>
             <NavBar></NavBar>
-            <h2>Edit Song</h2>
-            <h4 className="form-create-title">Editing "{songToEdit.song_name}"</h4>
-            <form className="form-create" action="">
-                <label for="songName">Edit Song Name:</label>
-                <input 
-                    type="text"
-                    name="songName"
-                    value={songName}
-                    onChange={e => setSongName(e.target.value)}
-                    ></input>
-                <label for="releaseID">Select Release:</label>
-                <Select 
-                    options={releaseMap}
-                    onChange={(selected) => setReleaseID(selected.value)}
-                    name="releaseID"
-                    id="release-id" 
-                />
-                <label for="genreID">Select Genre:</label>
-                <Select 
-                    options={genreMap}
-                    onChange={(selected) => setGenreID(selected.value)}
-                    name="genreID"
-                    id="genreID" 
-                />
-                <button type="button" onClick = {() => updateSong()}>Submit</button>
-                <button type="button" onClick = {
-                    () => navigate("../songs")
+            <h2>Edit a Song</h2>
+            <div className="form-edit-container">
+                <form className="form-edit" action="">
+                    <h4 className="form-title">Editing "{songToEdit.song_name}"</h4>
+                    <label for="songName">Edit Song Name:</label>
+                    <input 
+                        type="text"
+                        name="songName"
+                        value={songName}
+                        onChange={e => setSongName(e.target.value)}
+                        ></input>
+                    <label for="releaseID">Select Release:</label>
+                    <Select 
+                        options={releaseMap}
+                        onChange={(selected) => setReleaseID(selected.value)}
+                        name="releaseID"
+                        id="release-id" 
+                        />
+                    <label for="genreID">Select Genre:</label>
+                    <Select 
+                        options={genreMap}
+                        onChange={(selected) => setGenreID(selected.value)}
+                        name="genreID"
+                        id="genreID" 
+                        />
+                </form>
+                <div className="edit-button-container">
+                    <button 
+                    type="button" 
+                    className="delete-button form-edit-button"
+                    onClick = {
+                        () => navigate("../songs")
                     }>Cancel</button>
-            </form>
+                    <button 
+                        type="button" 
+                        className="add-button form-edit-button"
+                        onClick = {() => updateSong()}
+                    >Submit</button>
+                </div>
+            </div>
         </div>
     );
 }

@@ -89,10 +89,8 @@ function Playlists() {
       <NavBar></NavBar>
       <h2>Playlists</h2>
 
-
-
-      <h4 className="form-create-title">Create a new Playlist</h4>
       <form className="form-create">
+        <h3 className="form-title">Create a new Playlist</h3>
         <label htmlFor="playlist-name">Playlist name: </label>
         <input 
           name="playlistName"
@@ -121,44 +119,56 @@ function Playlists() {
           <option value={1} >Yes</option>
           <option value={0}>No</option>
         </select>
-        <button type="button" onClick = {() => createPlaylist()}>Add</button>
+        <button 
+          type="button"
+          className="form-button add-button"
+          onClick = {() => createPlaylist()}
+        >Add</button>
       </form>
 
-      <h4 className="form-create-title">User Playlists</h4>
+      <div className="table-container">
 
-      <table className="table playlist-table">
-        <thead>
-          <tr className="table-rows">
-            <th>ID</th>
-            <th>Playlist Name</th>
-            <th>User ID</th>
-          </tr>
-        </thead>
-        <tbody>
-          {playlists.map((playlist) => (
-            <tr className="table-rows">
-              <td>{playlist.playlist_id}</td>
-              <td>{playlist.playlist_name}</td>
-              <td>{playlist.user_id}</td>
-              <td className="table-button">
-                <button
-                    onClick={() => viewPlaylist(playlist)}
-                >View</button>
-              </td>
-              <td className="table-button">
-                <button 
-                    onClick={() => editPlaylist(playlist)}
-                >Edit</button>
-              </td>
-              <td className="table-button">
-                <button
-                    onClick={() => confirmDelete(playlist.playlist_id, playlist.playlist_name)}
-                >Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          <h3 className="form-create-title">User Playlists</h3>
+          <table className="table playlist-table">
+            <thead>
+              <tr className="table-heading">
+                <th>ID</th>
+                <th>Playlist Name</th>
+                <th>User ID</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {playlists.map((playlist) => (
+                <tr className="table-rows">
+                  <td>{playlist.playlist_id}</td>
+                  <td>{playlist.playlist_name}</td>
+                  <td>{playlist.user_id}</td>
+                  <td className="table-button">
+                      <button
+                          className="add-button"
+                          onClick={() => viewPlaylist(playlist)}
+                      >View</button>
+                  </td>
+                  <td className="table-button">
+                      <button 
+                          className="edit-button"
+                          onClick={() => editPlaylist(playlist)}
+                      >Edit</button>
+                  </td>
+                  <td className="table-button">
+                      <button
+                          className="delete-button"
+                          onClick={() => confirmDelete(playlist.playlist_id, playlist.playlist_name)}
+                      >Delete</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
     </div>
   );

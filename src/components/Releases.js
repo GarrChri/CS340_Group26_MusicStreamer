@@ -106,9 +106,9 @@ function Releases() {
       <NavBar></NavBar>
       <h2>Releases</h2>
 
-      <h4 className="form-create-title">Add a new Release</h4>
       
       <form className="form-create">
+        <h3 className="form-title">Add a new Release</h3>
         <label for="release-name">Release Name: </label>
         <input 
           name="releaseName"
@@ -133,39 +133,49 @@ function Releases() {
           options={releaseTypeMap}
           onChange={(selected) => setReleaseTypeID(selected.value)}
         />
-        <button type="button" onClick = {() => createRelease()}>Add</button>
+        <button 
+          type="button"
+          className="form-button add-button"
+          onClick = {() => createRelease()}>Add</button>
       </form>
 
-      <table className="table">
-        <thead>
-          <tr className="table-rows">
-            <th>ID</th>
-            <th>Artist</th>
-            <th>Release Name</th>
-            <th>Release Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          {releases.map((release) => (
-            <tr className="table-rows">
-              <td>{release.release_id}</td>
-              <td>{release.artist_name}</td>
-              <td>{release.release_name}</td>
-              <td>{release.release_type_name}</td>
-              <td className="table-button">
-                <button 
-                    onClick={() => editRelease(release)}
-                >Edit</button>
-              </td>
-              <td className="table-button">
-                <button
-                    onClick={() => confirmDelete(release.release_id, release.release_name)}
-                >Delete</button>
-              </td>
+      <div className="table-container">
+      <h3 className="table-title">Artist Releases</h3>
+        <table className="table">
+          <thead>
+            <tr className="table-heading">
+              <th>ID</th>
+              <th>Artist</th>
+              <th>Release Name</th>
+              <th>Release Type</th>
+              <th></th>
+              <th></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {releases.map((release) => (
+              <tr className="table-rows">
+                <td>{release.release_id}</td>
+                <td>{release.artist_name}</td>
+                <td>{release.release_name}</td>
+                <td>{release.release_type_name}</td>
+                <td className="table-button">
+                  <button 
+                    className="edit-button"
+                    onClick={() => editRelease(release)}
+                  >Edit</button>
+                </td>
+                <td className="table-button">
+                  <button
+                    className="delete-button"
+                    onClick={() => confirmDelete(release.release_id, release.release_name)}
+                  >Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

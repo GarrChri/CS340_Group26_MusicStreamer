@@ -36,26 +36,28 @@ function ViewPlaylist () {
     return (
         <div>
             <NavBar></NavBar>
-            <h2>{playlistName}</h2>
-      <table className="table">
-        <thead>
-          <tr className="table-rows">
-            <th>Song</th>
-            <th>Artist</th>
-          </tr>
-        </thead>
-        <tbody>
-          {playlist && playlist.map((song) => (
-            <tr className="table-rows">
-              <td>{song.song_name}</td>
-              <td>{song.artist_name}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+            <div className="table-container playlist-view-container">
+                <h2 className="table-title">{playlistName}</h2>
+                <table className="table">
+                    <thead>
+                        <tr className="table-heading">
+                            <th>Song</th>
+                            <th>Artist</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {playlist && playlist.map((song) => (
+                              <tr className="table-rows">
+                                  <td>{song.song_name}</td>
+                                  <td>{song.artist_name}</td>
+                              </tr>
+                          ))}
+                    </tbody>
+                </table>
+              </div>
       <div>
         <button 
-        className="playlist-back-button"
+        className="playlist-back-button edit-button"
         onClick={navigateBack}
         >Back to Playlists</button>
       </div>

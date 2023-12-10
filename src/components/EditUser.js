@@ -44,23 +44,37 @@ function EditUser () {
             <NavBar></NavBar>
             <h2>Edit</h2>
 
-            <h4 className="form-create-title">Editing {userToEdit.user_name}</h4>
-            <form className="form-create" action="">
-                <input 
-                    type="text"
-                    name="userName"
-                    value={userName}
-                    onChange={e => setUserName(e.target.value)}
-                    ></input>
-                <input 
-                    type="text"
-                    name="userEmail"
-                    value={userEmail}
-                    onChange={e => setUserEmail(e.target.value)}
-                    ></input>
-                <button type="button" onClick = {() => updateUser()}>Submit</button>
-                <button type="button" onClick = {() => navigate("../users")}>Cancel</button>
-            </form>
+            <div className="form-edit-container">
+                <form className="form-edit" action="">
+                    <h4 className="form-title">Editing {userToEdit.user_name}</h4>
+                    <label for="userName">User Name:</label>
+                    <input 
+                        type="text"
+                        name="userName"
+                        value={userName}
+                        onChange={e => setUserName(e.target.value)}
+                        ></input>
+                    <label for="userEmail">Email:</label>
+                    <input 
+                        type="text"
+                        name="userEmail"
+                        value={userEmail}
+                        onChange={e => setUserEmail(e.target.value)}
+                        ></input>
+                </form>
+                <div className="edit-button-container">
+                    <button 
+                        type="button" 
+                        className="delete-button form-edit-button"
+                        onClick = {() => navigate("../users")}
+                        >Cancel</button>
+                    <button 
+                        type="button" 
+                        className="add-button form-edit-button"
+                        onClick = {() => updateUser()}
+                        >Submit</button>
+                </div>
+            </div>
         </div>
     );
 }

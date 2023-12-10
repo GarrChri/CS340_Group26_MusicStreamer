@@ -73,8 +73,8 @@ function ReleaseTypes() {
           <NavBar></NavBar>
           <h2>Release Types</h2>
 
-          <h4 className="form-create-title">Add a new Release Type</h4>
             <form className="form-create" action="">
+              <h3 className="form-title">Add a new Release Type</h3>
               <label for="releaseTypeName">Name: </label>
               <input
                 type="text"
@@ -82,37 +82,46 @@ function ReleaseTypes() {
                 className="form-create-input"
                 onChange={e => setReleaseTypeName(e.target.value)}
               />
-              <button type="button" onClick = {() => createReleaseType()}>Add</button>
+              <button 
+                type="button"
+                className="form-button add-button" 
+                onClick = {() => createReleaseType()}
+              >Add</button>
             </form>
 
-            <h4 className="form-create-title">All Release Types</h4>
-          <table className="table">
-                <thead>
-                      <tr className="table-rows">
+            <div className="table-container">
+                <h3 className="table-title">All Release Types</h3>
+                <table className="table">
+                    <thead>
+                        <tr className="table-heading">
                             <th>ID</th>
                             <th>Name</th>
-                      </tr>
-                </thead>
-                <tbody>
-                    {releaseTypes.map((releaseType) => (
-
-                        <tr className="table-rows">
-                            <td>{releaseType.release_type_id}</td>
-                            <td>{releaseType.release_type_name}</td>
-                            <td className="table-button">
-                                <button 
-                                    onClick={() => editReleaseType(releaseType)}
-                                    >Edit</button>
-                            </td>
-                            <td className="table-button">
-                                <button
-                                    onClick={() => confirmDelete(releaseType.release_type_id, releaseType.release_type_name)}
-                                    >Delete</button>
-                            </td>
+                            <th></th>
+                            <th></th>
                         </tr>
+                    </thead>
+                    <tbody>
+                        {releaseTypes.map((releaseType) => (
+                            <tr className="table-rows">
+                                <td>{releaseType.release_type_id}</td>
+                                <td>{releaseType.release_type_name}</td>
+                                <td className="table-button">
+                                    <button 
+                                        className="edit-button"
+                                        onClick={() => editReleaseType(releaseType)}
+                                    >Edit</button>
+                                </td>
+                                <td className="table-button">
+                                    <button
+                                        className="delete-button"
+                                        onClick={() => confirmDelete(releaseType.release_type_id, releaseType.release_type_name)}
+                                    >Delete</button>
+                                </td>
+                            </tr>
                         ))}
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
     </div>
   );
 }

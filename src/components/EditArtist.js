@@ -42,29 +42,40 @@ function EditArtist () {
     return (
         <div>
             <NavBar></NavBar>
-            <h2>Edit</h2>
-            <h4 className="form-create-title">Editing {artistToEdit.artist_name}</h4>
-            <form className="form-create" action="">
-                <label for="artistName">Artist Name:</label>
-                <input 
-                    type="text"
-                    name="artistName"
-                    value={artistName}
-                    onChange={e => setArtistName(e.target.value)}
-                    ></input>
-                <label for="artistDescription">Description:</label>
-                <textarea
-                    rows="8"
-                    cols="30"
-                    name="artistDescription"
-                    value={artistDescription}
-                    onChange={e => setArtistDescription(e.target.value)}
-                    ></textarea>
-                <button type="button" onClick = {() => updateArtist()}>Submit</button>
-                <button type="button" onClick = {
-                    () => navigate("../artistPage", {state: {artistID: artistID}})
-                    }>Cancel</button>
-            </form>
+            <h2>Edit an Artist</h2>
+            <div className="form-edit-container">
+                <form className="form-edit" action="">
+                    <h4 className="form-title">Editing {artistToEdit.artist_name}</h4>
+                    <label for="artistName">Artist Name:</label>
+                    <input 
+                        type="text"
+                        name="artistName"
+                        value={artistName}
+                        onChange={e => setArtistName(e.target.value)}
+                        ></input>
+                    <label for="artistDescription">Description:</label>
+                    <textarea
+                        rows="8"
+                        cols="30"
+                        name="artistDescription"
+                        value={artistDescription}
+                        onChange={e => setArtistDescription(e.target.value)}
+                        ></textarea>
+                </form>
+                <div className="edit-button-container">
+                    <button 
+                        type="button" 
+                        className="delete-button form-edit-button"
+                        onClick = {
+                            () => navigate("../artistPage", {state: {artistID: artistID}})
+                        }>Cancel</button>
+                    <button 
+                        type="button" 
+                        className="add-button form-edit-button"
+                        onClick = {() => updateArtist()}
+                    >Submit</button>
+                </div>
+            </div>
         </div>
     );
 }

@@ -117,8 +117,8 @@ function Artists() {
         </button>
         </form>
 
-      <h4 className="form-create-title">Add a new Artist</h4>
       <form className="form-create">  
+        <h3 className="form-title">Add a new Artist</h3>
         <label for="artist-name">Name: </label>
         <input 
           name="artistName"
@@ -135,38 +135,49 @@ function Artists() {
           className="form-create-input" 
           onChange={e => setArtistDescription(e.target.value)}
         />
-        <button type="button" onClick = {() => createArtist()}>Add</button>
+        <button 
+          type="button"
+          className="form-button add-button"
+          onClick = {() => createArtist()}
+        >Add</button>
       </form>
 
-      <h4>Artist List</h4>
-      <table className="table">
-        <thead>
-          <tr className="table-rows">
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-      {artists.map((artist) => (
-        <tr className="table-rows" key={artist.id}>
-          <td>{artist.artist_id}</td>
-          <td>{artist.artist_name}</td>
-          <td>{artist.artist_description}</td>
-              <td className="table-button">
-              <button 
-                    onClick={() => editArtist(artist)}
-                >Edit</button>
-              </td>
-              <td className="table-button">
-                <button
-                    onClick={() => confirmDelete(artist.artist_id, artist.artist_name)}
-                >Delete</button>
-              </td>
+
+      <div className="table-container">
+        <h3 className="table-title">Artist List</h3>
+        <table className="table">
+          <thead>
+            <tr className="table-heading">
+              <th>ID</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th></th>
+              <th></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+        {artists.map((artist) => (
+          <tr className="table-rows" key={artist.id}>
+            <td>{artist.artist_id}</td>
+            <td>{artist.artist_name}</td>
+            <td>{artist.artist_description}</td>
+                <td className="table-button">
+                <button 
+                  className="edit-button"
+                  onClick={() => editArtist(artist)}
+                >Edit</button>
+                </td>
+                <td className="table-button">
+                  <button
+                    className="delete-button"
+                    onClick={() => confirmDelete(artist.artist_id, artist.artist_name)}
+                  >Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

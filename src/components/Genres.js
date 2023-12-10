@@ -72,8 +72,8 @@ function Genres({id, name}){
             <NavBar></NavBar>
             <h2>Genres</h2>
 
-            <h4 className="form-create-title">Add a New Genre</h4>
             <form className="form-create" action="">
+            <h3 className="form-title">Add a New Genre</h3>
                 <label for="genreName">Genre Name: </label>
                 <input 
                     name="genreName" 
@@ -82,37 +82,46 @@ function Genres({id, name}){
                     className="form-create-input" 
                     onChange={e => setGenreName(e.target.value)}
                 />
-                <button type="button" onClick = {() => createGenre()}>Add</button>
+                <button 
+                    type="button" 
+                    className="form-button add-button" 
+                    onClick = {() => createGenre()}
+                >Add</button>
             </form>
-
-            <h4 className="form-create-title">All Genres</h4>
-            <table className="table">
-                <thead>
-                    <tr className="table-rows">
-                        <th>ID</th>
-                        <th>Genre</th>
-                    </tr> 
-                </thead>
-                <tbody>
-                    {genres.map((genre) => (
-
-                        <tr className="table-rows">
-                            <td>{genre.genre_id}</td>
-                            <td>{genre.genre_name}</td>
-                            <td className="table-button">
-                                <button 
-                                    onClick={() => editGenre(genre)}
+            <div className="table-container">
+                <h3 className="table-title">All Genres</h3>
+                <table className="table">
+                    <thead>
+                        <tr className="table-heading">
+                            <th>ID</th>
+                            <th>Genre</th>
+                            <th></th>
+                            <th></th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                        {genres.map((genre) => (
+                            
+                            <tr className="table-rows">
+                                <td>{genre.genre_id}</td>
+                                <td>{genre.genre_name}</td>
+                                <td className="table-button">
+                                    <button
+                                        className="edit-button" 
+                                        onClick={() => editGenre(genre)}
                                     >Edit</button>
-                            </td>
-                            <td className="table-button">
-                                <button
-                                    onClick={() => confirmDelete(genre.genre_id, genre.genre_name)}
+                                </td>
+                                <td className="table-button">
+                                    <button
+                                        className="delete-button"
+                                        onClick={() => confirmDelete(genre.genre_id, genre.genre_name)}
                                     >Delete</button>
-                            </td>
-                        </tr>
-                        ))}
-                </tbody>
-            </table>
+                                </td>
+                            </tr>
+                            ))}
+                    </tbody>
+                </table>
+            </div>
 
             
         </div>

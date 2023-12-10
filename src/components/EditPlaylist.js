@@ -43,35 +43,51 @@ function EditPlaylist () {
     return (
         <div>
             <NavBar></NavBar>
-            <h2>Edit</h2>
+            <h2>Edit a Playlist</h2>
 
-            <h4 className="form-create-title">Editing {playlistToEdit.playlist_name}</h4>
-            <form className="form-create" action="">
-                <input 
-                    type="text"
-                    name="playlistName"
-                    value={playlistName}
-                    onChange={e => setPlaylistName(e.target.value)}
-                    ></input>
-                <input 
-                    type="text"
-                    name="userID"
-                    value={userID}
-                    onChange={e => setUserID(e.target.value)}
-                    ></input>
-                <select 
-                    type="number"
-                    name="isPrivate" 
-                    value={isPrivate}
-                    onChange={e => setIsPrivate(e.target.value)}
-                    >
-                    <option value="default">---</option>
-                    <option value={1} >Yes</option>
-                    <option value={0}>No</option>
-                    </select>
-                <button type="button" onClick = {() => updatePlaylist()}>Submit</button>
-                <button type="button" onClick = {() => navigate("../playlists")}>Cancel</button>
-            </form>
+            <div className="form-edit-container">
+
+                <form className="form-edit" action="">
+                    <h4 className="form-title">Editing {playlistToEdit.playlist_name}</h4>
+                    <label for="playlistName">Playlist Name:</label>
+                    <input 
+                        type="text"
+                        name="playlistName"
+                        value={playlistName}
+                        onChange={e => setPlaylistName(e.target.value)}
+                        ></input>
+                    <label for="userID">User ID:</label>
+                    <input 
+                        type="text"
+                        name="userID"
+                        value={userID}
+                        onChange={e => setUserID(e.target.value)}
+                        ></input>
+                    <label for="isPrivate">Private Playlist?</label>
+                    <select 
+                        type="number"
+                        name="isPrivate" 
+                        value={isPrivate}
+                        onChange={e => setIsPrivate(e.target.value)}
+                        >
+                        <option value="default">---</option>
+                        <option value={1} >Yes</option>
+                        <option value={0}>No</option>
+                        </select>
+                </form>
+                <div className="edit-button-container">
+                    <button 
+                        type="button"
+                        className="delete-button form-edit-button"
+                        onClick = {() => navigate("../playlists")}
+                    >Cancel</button>
+                    <button 
+                        type="button" 
+                        className="add-button form-edit-button"
+                        onClick = {() => updatePlaylist()}
+                    >Submit</button>
+                </div>
+            </div>
         </div>
     );
 }

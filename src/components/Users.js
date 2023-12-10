@@ -78,8 +78,8 @@ function Users() {
       <NavBar></NavBar>
       <h2>Users</h2>
 
-      <h4 className="form-create-title">Add a new User</h4>
       <form className="form-create">
+        <h3 className="form-title">Add a new User</h3>
         <label for="user-name">Name: </label>
         <input 
           name="userName"
@@ -96,39 +96,48 @@ function Users() {
           className="form-create-input" 
           onChange={e => setUserEmail(e.target.value)}
         />
-        <button type="button" onClick = {() => createUser()}>Add</button>
+        <button 
+          type="button" 
+          className="form-button add-button" 
+          onClick = {() => createUser()}
+        >Add</button>
       </form>
 
-      <h4 className="form-create-title">Active Users</h4>
-
-      <table className="table">
-        <thead>
-          <tr className="table-rows">
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr className="table-rows">
-              <td>{user.user_id}</td>
-              <td>{user.user_name}</td>
-              <td>{user.user_email}</td>
-              <td className="table-button">
-              <button 
-                    onClick={() => editUser(user)}
-                >Edit</button>
-              </td>
-              <td className="table-button">
-                <button
-                    onClick={() => confirmDelete(user.user_id, user.user_name)}
-                >Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="table-container">
+        <h3 className="table-title">Active Users</h3>
+        <table className="table">
+            <thead>
+              <tr className="table-heading">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr className="table-rows">
+                  <td>{user.user_id}</td>
+                  <td>{user.user_name}</td>
+                  <td>{user.user_email}</td>
+                  <td className="table-button">
+                      <button
+                        className="edit-button" 
+                        onClick={() => editUser(user)}
+                      >Edit</button>
+                  </td>
+                  <td className="table-button">
+                      <button
+                        className="delete-button"
+                        onClick={() => confirmDelete(user.user_id, user.user_name)}
+                      >Delete</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
     </div>
   );
