@@ -117,20 +117,22 @@ function Songs() {
     <div>
       <NavBar></NavBar>
       <h2>Songs</h2>
-      
-      <h3>Search for a Song</h3>
-      <form action="" className="search-form">
-        <label for="searchQuery"></label>
-        <input
-          type="text"
-          name="searchQuery"
-          className="form-create-input" 
-          onChange={e => setSearchQuery(e.target.value)}></input>
-        <button 
-          className="search-button"
-          onClick={() => {searchSongs(searchQuery)}}
-          >Search</button>
-      </form>
+
+      <div className="search-container">
+        <h3>Search for a Song</h3>
+        <form action="" className="search-form">
+          <label for="searchQuery"></label>
+          <input
+            type="text"
+            name="searchQuery"
+            className="form-create-input" 
+            onChange={e => setSearchQuery(e.target.value)}></input>
+          <button 
+            className="search-button edit-button"
+            onClick={() => {searchSongs(searchQuery)}}
+            >Search</button>
+          </form>
+        </div>
 
       <form className="form-create" action="">
         <h3 className="form-title">Add a new Song</h3>

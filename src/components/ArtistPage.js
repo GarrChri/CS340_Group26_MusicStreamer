@@ -35,6 +35,10 @@ function ArtistPage() {
         navigate("/editArtist", { state: { artistToEdit: artist }});
     }
 
+    const navigateBack = () => {
+        navigate("/artists");
+    }
+
     useEffect(() => {
         loadArtist();
         loadReleases();
@@ -44,31 +48,38 @@ function ArtistPage() {
         artist && releases && <div> 
           <NavBar></NavBar>
           <h2>{artist.artist_name}</h2>
-          
-          <h3>Description:</h3>
-          <p>{artist.artist_description}</p>
-          <button onClick={() => editArtist(artist)}>Edit Artist</button>
-          <h3>Releases</h3>
-
-          <table className="table">
-            <thead>
-            <tr className="table-rows">
-                <th>ID</th>
-                <th>Name</th>
-                <th>Type</th>
-            </tr>
-            </thead>
-            <tbody>
-                {releases.map((release) => (
-                    <tr className="table-rows" key={release.release_id}>
-                        <td>{release.release_id}</td>
-                        <td>{release.release_name}</td>
-                        <td>{release.release_type_name}</td>
-                    </tr>
-                ))}
-            </tbody>
-          </table>
-          <a href="./artists">Back to Artists</a>
+          <div className="search-container search-artist">
+            <h3>Description:</h3>
+            <p>{artist.artist_description}</p>
+          </div>
+          <button 
+            className="edit-button"
+            onClick={() => editArtist(artist)}>Edit Artist</button>
+          <div className="table-container artist-table-container">
+            <h3>Releases</h3>
+            <table className="table">
+                <thead>
+                <tr className="table-heading">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {releases.map((release) => (
+                        <tr className="table-rows" key={release.release_id}>
+                            <td>{release.release_id}</td>
+                            <td>{release.release_name}</td>
+                            <td>{release.release_type_name}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+          </div>
+          <button 
+            className="edit-button"
+            onClick={navigateBack}>Back to Artists
+          </button>
         </div>
       );
 }

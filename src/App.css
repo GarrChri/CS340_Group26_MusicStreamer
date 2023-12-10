@@ -83,7 +83,7 @@ h5 {
   margin-bottom: 2rem;
   padding: 0 2rem 1rem;
   max-width: fit-content;
-  border: 1px solid #aaaaaa;
+ /* border: 1px solid #aaaaaa;*/
   border-radius: 2%;
 }
 
@@ -220,10 +220,26 @@ h5 {
   background-color: #75df55;
 }
 
+.search-container {
+  margin: auto;
+/*  border: 1px solid #aaaaaa; */
+  max-width: 30rem;
+  padding: .5rem 2rem;
+  border-radius: 3%;
+}
+
+.search-artist {
+  margin-bottom: 2rem;
+  border: none;
+}
+
+.artist-table-container {
+  margin-top: 2rem;
+}
+
 .search-form {
   display: flex;
   margin: 2rem auto;
-  max-width: 30rem;
   align-items: center;
 }
 

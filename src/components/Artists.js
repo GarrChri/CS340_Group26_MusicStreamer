@@ -96,26 +96,28 @@ function Artists() {
     <div>
       <NavBar></NavBar>
       <h2>Artists</h2>
-      <h4>Search for an Artist</h4>
-       <form action="" className="search-form">
-        <Select
-          id="artist-search"
-          className="select"
-          placeholder=""
-          components={{
-          DropdownIndicator: () => null,
-          IndicatorSeparator: () => null
-          }}
-          options={artistMap}
-          onChange={(selected) => setArtistID(selected.value)}
-          openmenuonclick={false}
-          isClearable
-          isSearchable
-        />
-        <button className="search-button" onClick={handleSearch}>
-        Search 
-        </button>
-        </form>
+      <div className="search-container">
+          <h3>Search for an Artist</h3>
+          <form action="" className="search-form">
+            <Select
+              id="artist-search"
+              className="select"
+              placeholder=""
+              components={{
+                DropdownIndicator: () => null,
+                IndicatorSeparator: () => null
+              }}
+              options={artistMap}
+              onChange={(selected) => setArtistID(selected.value)}
+              openmenuonclick={false}
+              isClearable
+              isSearchable
+              />
+            <button className="search-button edit-button" onClick={handleSearch}>
+            Search 
+            </button>
+            </form>
+        </div>
 
       <form className="form-create">  
         <h3 className="form-title">Add a new Artist</h3>

@@ -45,6 +45,10 @@ function SongSearchResults () {
         navigate("/editSong", { state: { songToEdit: song }});
     }
 
+    const navigateBack = () => {
+        navigate("/songs");
+    }
+
     useEffect(() => {
         loadSongs();
     }, []);
@@ -53,33 +57,43 @@ function SongSearchResults () {
         <div>
             <NavBar></NavBar>
             <h2>Search results for "{searchQuery}"</h2>
-            <a href="./songs">Go Back to Songs</a>
-            <table className="table">
-                <thead>
-                    <tr className="table-rows">
-                    <th>Song Name</th>
-                    <th>Artist</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {songs.map((song) => (
-                        <tr className="table-rows">
-                            <td>{song.song_name}</td>
-                            <td>{song.artist_name}</td>
-                            <td className="table-button">
-                                <button 
+            <div className="table-container">
+                <table className="table">
+                    <thead>
+                        <tr className="table-heading">
+                        <th>Song Name</th>
+                        <th>Artist</th>
+                        <th></th>
+                        <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {songs.map((song) => (
+                            <tr className="table-rows">
+                                <td>{song.song_name}</td>
+                                <td>{song.artist_name}</td>
+                                <td className="table-button">
+                                    <button 
+                                    className="edit-button"
                                     onClick={() => editSong(song)}
                                     >Edit</button>
-                            </td>
-                            <td className="table-button">
-                                <button
+                                </td>
+                                <td className="table-button">
+                                    <button
+                                    className="delete-button"
                                     onClick={() => confirmDelete(song.song_id, song.song_name)}
                                     >Delete</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+            <button 
+            className="edit-button"
+            onClick={navigateBack}>Back to Songs
+          </button>
         </div>
         
     );
