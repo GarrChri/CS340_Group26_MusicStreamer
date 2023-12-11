@@ -45,6 +45,10 @@ function SongSearchResults () {
         navigate("/editSong", { state: { songToEdit: song }});
     }
 
+    const addToPlaylist = (song) => {
+        navigate("/addSongToPlaylist", {state: {song: song }});
+    }
+
     const navigateBack = () => {
         navigate("/songs");
     }
@@ -61,30 +65,43 @@ function SongSearchResults () {
                 <table className="table">
                     <thead>
                         <tr className="table-heading">
-                        <th>Song Name</th>
-                        <th>Artist</th>
+                        <th>ID</th>
+                        <th>Song</th>
+                        <th>Release Name</th>
+                        <th>Genre</th>
+                        <th>Stream Count</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {songs.map((song) => (
-                            <tr className="table-rows">
-                                <td>{song.song_name}</td>
-                                <td>{song.artist_name}</td>
-                                <td className="table-button">
-                                    <button 
-                                    className="edit-button"
-                                    onClick={() => editSong(song)}
-                                    >Edit</button>
-                                </td>
-                                <td className="table-button">
-                                    <button
-                                    className="delete-button"
-                                    onClick={() => confirmDelete(song.song_id, song.song_name)}
-                                    >Delete</button>
-                                </td>
-                            </tr>
+                        <tr className="table-rows">
+                            <td>{song.song_id}</td>
+                            <td>{song.song_name}</td>
+                            <td>{song.release_name}</td>
+                            <td>{song.genre_name}</td>
+                            <td>{song.stream_count}</td>
+                            <td className="table-button">
+                                <button 
+                                className="edit-button"
+                                onClick={() => editSong(song)}
+                                >Edit</button>
+                            </td>
+                            <td className="table-button">
+                                <button
+                                className="delete-button"
+                                onClick={() => confirmDelete(song.song_id, song.song_name)}
+                                >Delete</button>
+                            </td>
+                            <td className="table-button">
+                                <button
+                                className="add-button"
+                                onClick={() => addToPlaylist(song)}
+                                >Add to Playlist...</button>
+                            </td>
+                        </tr>
                         ))}
                     </tbody>
                 </table>
