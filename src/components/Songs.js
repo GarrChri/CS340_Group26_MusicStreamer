@@ -101,6 +101,10 @@ function Songs() {
       }});
   }
 
+  const addToPlaylist = (song) => {
+    navigate("/addSongToPlaylist", {state: {song: song }});
+}
+
   const searchSongs = (searchQuery) => {
     navigate("/songSearchResults", { state: { 
       searchQuery: searchQuery
@@ -177,6 +181,7 @@ function Songs() {
               <th>Stream Count</th>
               <th></th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -198,6 +203,12 @@ function Songs() {
                       className="delete-button"
                       onClick={() => confirmDelete(song.song_id, song.song_name)}
                     >Delete</button>
+                </td>
+                <td className="table-button">
+                    <button
+                    className="add-button"
+                    onClick={() => addToPlaylist(song)}
+                    >Add to Playlist...</button>
                 </td>
               </tr>
             ))}
