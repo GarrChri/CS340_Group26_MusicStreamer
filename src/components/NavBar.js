@@ -1,3 +1,9 @@
+/* NavBar.js
+
+Citation Information
+This file contains all original code written by the app's developers.
+*/
+
 import { Link } from "react-router-dom";
 
 // Creates links to each of the pages

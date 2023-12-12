@@ -1,3 +1,9 @@
+/* EditArtist.js
+
+Citation Information
+This file contains all original code written by the app's developers.
+*/
+
 import React from "react";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -22,6 +28,7 @@ function EditArtist() {
     // Create new artist object from state vars
     const updateArtist = async () => {
         const updatedArtist = { artistID, artistName, artistDescription };
+
         const response = await fetch(`${API_ENDPOINT}/api/artists`, {
             method: "PUT",
             body: JSON.stringify(updatedArtist),

@@ -1,3 +1,9 @@
+/* ReleaseTypes.js
+
+Citation Information
+This file contains all original code written by the app's developers.
+*/
+
 import React from "react";
 import { useState, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";

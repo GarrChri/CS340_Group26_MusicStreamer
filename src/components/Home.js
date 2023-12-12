@@ -1,3 +1,9 @@
+/* Home.js
+
+Citation Information
+This file contains all original code written by the app's developers.
+*/
+
 import React from "react";
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar";

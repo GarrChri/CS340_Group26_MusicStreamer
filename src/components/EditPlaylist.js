@@ -1,3 +1,9 @@
+/* EditPlaylist.js
+
+Citation Information
+This file contains all original code written by the app's developers.
+*/
+
 import React from "react";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";

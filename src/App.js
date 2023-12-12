@@ -1,3 +1,11 @@
+/* App.js
+
+Citation Information
+This file was originally provided with the create-react-app starter code, 
+but has been completely rewritten. The original code can be found at:
+https://react.dev/reference/react
+*/
+
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
