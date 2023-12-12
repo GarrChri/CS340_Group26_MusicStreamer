@@ -83,7 +83,6 @@ h5 {
   margin-bottom: 2rem;
   padding: 0 2rem 1rem;
   max-width: fit-content;
- /* border: 1px solid #aaaaaa;*/
   border-radius: 2%;
 }
 
@@ -111,7 +110,6 @@ h5 {
 }
 
 .table-rows td {
- /* border: solid black 1px; */
   padding: 1rem;
   max-width: 25rem;
 }
@@ -184,6 +182,7 @@ h5 {
 /***************************
 *****PLAYLIST VIEW PAGE*****
 ****************************/
+
 .playlist-view-container {
   margin-top: 2rem;
 }
@@ -194,7 +193,7 @@ h5 {
 
 
 /***************************
-***********FORMS************
+********CREATE FORMS*********
 ****************************/
 
 .form-create{

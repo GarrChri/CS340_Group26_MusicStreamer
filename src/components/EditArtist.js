@@ -6,38 +6,37 @@ import NavBar from "./NavBar";
 // Define API URL
 const API_ENDPOINT = process.env.REACT_APP_PROXY;
 
-function EditArtist () {
-    // location allows us to access state props from
-    // a navigate() redirect
+function EditArtist() {
+    // Location allows us to access state props from a navigate() redirect
     const navigate = useNavigate();
     const location = useLocation();
-    const artistToEdit = location.state.artistToEdit;
 
-    
+    // Setting variables and state
+    const artistToEdit = location.state.artistToEdit;
     const [artistID, setArtistID] = useState(artistToEdit.artist_id);
     const [artistName, setArtistName] = useState(artistToEdit.artist_name);
-    const [artistDescription, setArtistDescription] = useState(artistToEdit.artist_description);
-    
+    const [artistDescription, setArtistDescription] = useState(
+        artistToEdit.artist_description
+    );
+
+    // Create new artist object from state vars
     const updateArtist = async () => {
-        // create new artist object from state vars
-        const updatedArtist = {artistID, artistName, artistDescription};
-        
-        console.log(updatedArtist)
-        const response = await fetch(`${API_ENDPOINT}/api/artists`,{
+        const updatedArtist = { artistID, artistName, artistDescription };
+        const response = await fetch(`${API_ENDPOINT}/api/artists`, {
             method: "PUT",
             body: JSON.stringify(updatedArtist),
             headers: {
-                "Content-Type": "application/json"
-            }
+                "Content-Type": "application/json",
+            },
         });
 
-        if (response.status === 200){
+        if (response.status === 200) {
             alert(`Updated artist ${artistName}`);
             navigate("/artists");
         } else {
             alert("Artist not updated");
         }
-    }
+    };
 
     return (
         <div>
@@ -45,35 +44,44 @@ function EditArtist () {
             <h2>Edit an Artist</h2>
             <div className="form-edit-container">
                 <form className="form-edit" action="">
-                    <h4 className="form-title">Editing {artistToEdit.artist_name}</h4>
+                    <h4 className="form-title">
+                        Editing {artistToEdit.artist_name}
+                    </h4>
                     <label for="artistName">Artist Name:</label>
-                    <input 
+                    <input
                         type="text"
                         name="artistName"
                         value={artistName}
-                        onChange={e => setArtistName(e.target.value)}
-                        ></input>
+                        onChange={(e) => setArtistName(e.target.value)}
+                    ></input>
                     <label for="artistDescription">Description:</label>
                     <textarea
                         rows="8"
                         cols="30"
                         name="artistDescription"
                         value={artistDescription}
-                        onChange={e => setArtistDescription(e.target.value)}
-                        ></textarea>
+                        onChange={(e) => setArtistDescription(e.target.value)}
+                    ></textarea>
                 </form>
                 <div className="edit-button-container">
-                    <button 
-                        type="button" 
+                    <button
+                        type="button"
                         className="delete-button form-edit-button"
-                        onClick = {
-                            () => navigate("../artistPage", {state: {artistID: artistID}})
-                        }>Cancel</button>
-                    <button 
-                        type="button" 
+                        onClick={() =>
+                            navigate("../artistPage", {
+                                state: { artistID: artistID },
+                            })
+                        }
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        type="button"
                         className="add-button form-edit-button"
-                        onClick = {() => updateArtist()}
-                    >Submit</button>
+                        onClick={() => updateArtist()}
+                    >
+                        Submit
+                    </button>
                 </div>
             </div>
         </div>

@@ -6,8 +6,8 @@ import NavBar from "./NavBar";
 // Define API URL
 const API_ENDPOINT = process.env.REACT_APP_PROXY;
 
-function ViewPlaylist () {
-
+// Creates the playlsit table
+function ViewPlaylist() {
     // Setting variables and state
     const navigate = useNavigate();
     const location = useLocation();
@@ -15,20 +15,25 @@ function ViewPlaylist () {
 
     const [playlist, setPlaylist] = useState("");
     const [playlistID, setPlaylistID] = useState(playlistToView.playlist_id);
-    const [playlistName, setPlaylistName] = useState(playlistToView.playlist_name);
+    const [playlistName, setPlaylistName] = useState(
+        playlistToView.playlist_name
+    );
 
-    // function to retrieve the playlist
+    // Function to retrieve the playlist
     const loadPlaylist = async () => {
-        const response = await fetch(`${API_ENDPOINT}/api/playlistSongs?playlistID=${playlistID}`);
+        const response = await fetch(
+            `${API_ENDPOINT}/api/playlistSongs?playlistID=${playlistID}`
+        );
         const data = await response.json();
         setPlaylist(data);
-    }
+    };
 
-    // function to return to the playlist page
+    // Function to return to the playlist page
     const navigateBack = () => {
-        navigate('/playlists')            
-    }
-    
+        navigate("/playlists");
+    };
+
+    // Refreshes the playlist table when data changes
     useEffect(() => {
         loadPlaylist();
     }, []);
@@ -44,23 +49,26 @@ function ViewPlaylist () {
                             <th>Song</th>
                             <th>Artist</th>
                         </tr>
-                      </thead>
-                      <tbody>
-                          {playlist && playlist.map((song) => (
-                              <tr className="table-rows">
-                                  <td>{song.song_name}</td>
-                                  <td>{song.artist_name}</td>
-                              </tr>
-                          ))}
+                    </thead>
+                    <tbody>
+                        {playlist &&
+                            playlist.map((song) => (
+                                <tr className="table-rows">
+                                    <td>{song.song_name}</td>
+                                    <td>{song.artist_name}</td>
+                                </tr>
+                            ))}
                     </tbody>
                 </table>
-              </div>
-      <div>
-        <button 
-        className="playlist-back-button edit-button"
-        onClick={navigateBack}
-        >Back to Playlists</button>
-      </div>
+            </div>
+            <div>
+                <button
+                    className="playlist-back-button edit-button"
+                    onClick={navigateBack}
+                >
+                    Back to Playlists
+                </button>
+            </div>
         </div>
     );
 }

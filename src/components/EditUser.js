@@ -6,38 +6,36 @@ import NavBar from "./NavBar";
 // Define API URL
 const API_ENDPOINT = process.env.REACT_APP_PROXY;
 
-function EditUser () {
-    // location allows us to access state props from
-    // a navigate() redirect
+function EditUser() {
+    // location allows us to access state props from a navigate() redirect
     const navigate = useNavigate();
     const location = useLocation();
-    const userToEdit = location.state.userToEdit;
 
-    
+    // Setting variables and state
+    const userToEdit = location.state.userToEdit;
     const [userID, setUserID] = useState(userToEdit.user_id);
     const [userName, setUserName] = useState(userToEdit.user_name);
     const [userEmail, setUserEmail] = useState(userToEdit.user_email);
-    
+
+    // Create new User type object from state vars
     const updateUser = async () => {
-        // create new User type object from state vars
-        const updatedUser = {userID, userName, userEmail};
-        
-        console.log(updatedUser)
-        const response = await fetch(`${API_ENDPOINT}/api/users`,{
+        const updatedUser = { userID, userName, userEmail };
+
+        const response = await fetch(`${API_ENDPOINT}/api/users`, {
             method: "PUT",
             body: JSON.stringify(updatedUser),
             headers: {
-                "Content-Type": "application/json"
-            }
+                "Content-Type": "application/json",
+            },
         });
 
-        if (response.status === 200){
+        if (response.status === 200) {
             alert(`Updated user to ${userName}`);
             navigate("/users");
         } else {
             alert("User not updated");
         }
-    }
+    };
 
     return (
         <div>
@@ -46,33 +44,39 @@ function EditUser () {
 
             <div className="form-edit-container">
                 <form className="form-edit" action="">
-                    <h4 className="form-title">Editing {userToEdit.user_name}</h4>
+                    <h4 className="form-title">
+                        Editing {userToEdit.user_name}
+                    </h4>
                     <label for="userName">User Name:</label>
-                    <input 
+                    <input
                         type="text"
                         name="userName"
                         value={userName}
-                        onChange={e => setUserName(e.target.value)}
-                        ></input>
+                        onChange={(e) => setUserName(e.target.value)}
+                    ></input>
                     <label for="userEmail">Email:</label>
-                    <input 
+                    <input
                         type="text"
                         name="userEmail"
                         value={userEmail}
-                        onChange={e => setUserEmail(e.target.value)}
-                        ></input>
+                        onChange={(e) => setUserEmail(e.target.value)}
+                    ></input>
                 </form>
                 <div className="edit-button-container">
-                    <button 
-                        type="button" 
+                    <button
+                        type="button"
                         className="delete-button form-edit-button"
-                        onClick = {() => navigate("../users")}
-                        >Cancel</button>
-                    <button 
-                        type="button" 
+                        onClick={() => navigate("../users")}
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        type="button"
                         className="add-button form-edit-button"
-                        onClick = {() => updateUser()}
-                        >Submit</button>
+                        onClick={() => updateUser()}
+                    >
+                        Submit
+                    </button>
                 </div>
             </div>
         </div>

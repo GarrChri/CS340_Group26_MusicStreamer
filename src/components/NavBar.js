@@ -5,7 +5,7 @@ const NavBar = () => {
     return (
         <nav className="nav-bar">
             <div>
-                <Link  className="nav-link" to="/">
+                <Link className="nav-link" to="/">
                     Home
                 </Link>
                 <Link className="nav-link" to="/users">
@@ -17,7 +17,7 @@ const NavBar = () => {
                 <Link className="nav-link" to="/releases">
                     Releases
                 </Link>
-                <Link  className="nav-link" to="/artists">
+                <Link className="nav-link" to="/artists">
                     Artists
                 </Link>
                 <Link className="nav-link" to="/songs">
@@ -32,6 +32,6 @@ const NavBar = () => {
             </div>
         </nav>
     );
-}
+};
 
 export default NavBar;
